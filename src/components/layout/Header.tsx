@@ -4,7 +4,7 @@ import FavoritesIcon from "../../assets/icons/star.svg?react";
 
 export function Header() {
   return (
-    <header className="font-oswald sticky top-0 z-100 mb-9 flex h-17 items-center justify-between bg-black px-8 py-4">
+    <header className="font-oswald sticky top-0 z-100 flex h-17 items-center justify-between bg-black px-8 py-4">
       <div className="flex items-center gap-10">
         <Link to="/" title="Home">
           <img

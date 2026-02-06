@@ -1,13 +1,13 @@
 import { Header } from "./Header";
-import { Outlet } from "react-router";
 import { Footer } from "./Footer";
+import { Outlet } from "react-router";
 
-export function Layout() {
+export function MovieLayout() {
   return (
     <div className="page">
       <Header />
 
-      <main className="mx-auto max-w-360 px-8 py-8">
+      <main>
         <Outlet />
       </main>
 
