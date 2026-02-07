@@ -5,22 +5,24 @@ import { MovieLayout } from "../components/layout/MovieLayout";
 
 import { Home } from "../pages/Home/Home";
 import { Movie } from "../pages/Movie/Movie";
+import { WatchLater } from "../pages/WatchLater/WatchLater";
+
 import { NotFound } from "../pages/NotFound";
 
 export function AppRoutes() {
   return (
     <Routes>
-      {/* Layout padrão (com padding) */}
+      {/* Layout padrão do projeto (com padding) */}
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/watch-later" element={<WatchLater />} />
       </Route>
 
-      {/* Layout sem padding (Movie) */}
+      {/* Layout sem padding */}
       <Route element={<MovieLayout />}>
         <Route path="/movie/:id" element={<Movie />} />
       </Route>
 
-      {/* 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

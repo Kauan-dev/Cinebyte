@@ -58,7 +58,7 @@ export function Movie() {
       return;
     }
 
-    watchList.push({
+    watchList.unshift({
       id: movieDetails.id,
       title: movieDetails.title,
       poster_path: movieDetails.poster_path,
