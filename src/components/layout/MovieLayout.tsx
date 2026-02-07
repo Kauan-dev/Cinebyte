@@ -1,7 +1,9 @@
 import { Header } from "./Header";
-import { Footer } from "./Footer";
 import { Outlet } from "react-router";
+import { Footer } from "./Footer";
 
+// Layout exclusivo para páginas que não devem herdar os paddings do layout padrão
+// (ex: Movie, que usa backdrop full-width)
 export function MovieLayout() {
   return (
     <div className="page">

@@ -27,17 +27,18 @@ export function Home() {
   return (
     <div className="homepage">
       <div className="mb-9">
-        <Link to="/">
+        <Link to="/movie/872585">
           <img
             className="h-105 w-full rounded-sm object-cover"
             src={featuredBanner}
+            title="Oppenheimer"
             alt=""
           />
         </Link>
       </div>
 
       <div>
-        <h3 className="font-inter mb-4 text-[32px] font-semibold">
+        <h3 className="mb-4 text-[25px] font-semibold tracking-wider uppercase">
           Filmes em cartaz
         </h3>
 
