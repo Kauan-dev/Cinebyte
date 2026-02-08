@@ -102,7 +102,7 @@ export function Movie() {
                 <span>{movieDetails.vote_average.toFixed(1)}</span>
               </div>
 
-              <div className="flex gap-4">
+              <div className="font-google flex gap-4">
                 <Button
                   label="Watch trailer"
                   onClick={handleWatchTrailer}

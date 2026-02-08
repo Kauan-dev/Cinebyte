@@ -3,60 +3,65 @@ import { Link } from "react-router-dom";
 import api from "../../services/api";
 import featuredBanner from "../../assets/images/featuredBanner.jpg";
 
+import type { Media } from "../../types/media";
+import { MediaSection } from "../../components/sections/MediaSection";
+
 export function Home() {
-  type Media = {
-    id: number;
-    title: string;
-    vote_average: number;
-    poster_path?: string | null;
-  };
+  // Filmes
+  const [nowPlaying, setNowPlaying] = useState<Media[]>([]);
+  const [upcoming, setUpcoming] = useState<Media[]>([]);
+  // Series
+  const [onTheAir, setOnTheAir] = useState<Media[]>([]);
+  const [popular, setPopular] = useState<Media[]>([]);
 
   const itemLimit = 5;
 
-  const [movieList, setMovieList] = useState<Media[]>([]);
-
   useEffect(() => {
-    async function loadMovies() {
-      const response = await api.get("movie/now_playing");
-      setMovieList(response.data.results.slice(0, itemLimit));
+    async function loadHomeData() {
+      try {
+        const [
+          nowPlayingResponse,
+          upcomingResponse,
+          onTheAirResponse,
+          popularResponse,
+        ] = await Promise.all([
+          api.get("movie/now_playing"),
+          api.get("movie/upcoming"),
+          api.get("tv/on_the_air"),
+          api.get("tv/popular"),
+        ]);
+
+        setNowPlaying(nowPlayingResponse.data.results.slice(0, itemLimit));
+        setUpcoming(upcomingResponse.data.results.slice(0, itemLimit));
+        setOnTheAir(onTheAirResponse.data.results.slice(0, itemLimit));
+        setPopular(popularResponse.data.results.slice(0, itemLimit));
+      } catch (error) {
+        console.error("Erro ao carregar dados da Home", error);
+      }
     }
 
-    loadMovies();
+    loadHomeData();
   }, []);
 
   return (
     <div className="homepage">
-      <div className="mb-9">
+      <div className="mb-7">
         <Link to="/movie/872585">
           <img
-            className="h-105 w-full rounded-sm object-cover"
+            className="h-105 w-full rounded-md object-cover"
             src={featuredBanner}
             title="Oppenheimer"
             alt=""
           />
         </Link>
       </div>
-
-      <div>
-        <h3 className="mb-4 text-[25px] font-semibold tracking-wider uppercase">
-          Filmes em cartaz
-        </h3>
-
-        <div className="flex flex-wrap gap-x-5 gap-y-6">
-          {movieList.map((movie) => {
-            return (
-              <article key={movie.id}>
-                <Link to={`movie/${movie.id}`} title={movie.title}>
-                  <img
-                    className="w-60"
-                    src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                    alt=""
-                  />
-                </Link>
-              </article>
-            );
-          })}
-        </div>
+      <div className="flex flex-col gap-8">
+        {/* Filmes */}
+        <MediaSection title="Filmes em cartaz" data={nowPlaying} />
+        <MediaSection title="Em breve nos cinemas" data={upcoming} />
+        {/* Series */}
+        <MediaSection title="Series em exibição" data={onTheAir} />
+        <MediaSection title="Series populares da semana" data={popular} />
       </div>
     </div>
   );
