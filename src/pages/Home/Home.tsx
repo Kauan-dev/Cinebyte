@@ -14,7 +14,7 @@ export function Home() {
   const [onTheAir, setOnTheAir] = useState<Media[]>([]);
   const [popular, setPopular] = useState<Media[]>([]);
 
-  const itemLimit = 5;
+  const itemLimit = 20;
 
   useEffect(() => {
     async function loadHomeData() {
