@@ -7,10 +7,8 @@ import type { Media } from "../../types/media";
 import { MediaSection } from "../../components/sections/MediaSection";
 
 export function Home() {
-  // Filmes
   const [nowPlaying, setNowPlaying] = useState<Media[]>([]);
   const [upcoming, setUpcoming] = useState<Media[]>([]);
-  // Series
   const [onTheAir, setOnTheAir] = useState<Media[]>([]);
   const [popular, setPopular] = useState<Media[]>([]);
 
@@ -48,18 +46,17 @@ export function Home() {
       <div className="mb-7">
         <Link to="/movie/872585">
           <img
-            className="h-105 w-full rounded-md object-cover"
+            className="h-60 w-full rounded-md object-cover"
             src={featuredBanner}
             title="Oppenheimer"
             alt=""
           />
         </Link>
       </div>
+
       <div className="flex flex-col gap-8">
-        {/* Filmes */}
         <MediaSection title="Filmes em cartaz" data={nowPlaying} />
         <MediaSection title="Em breve nos cinemas" data={upcoming} />
-        {/* Series */}
         <MediaSection title="Series em exibição" data={onTheAir} />
         <MediaSection title="Series populares da semana" data={popular} />
       </div>

@@ -11,6 +11,14 @@ export function Carousel({ children, title }: CarouselProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftStart, setScrollLeftStart] = useState(0);
+  const hasMoved = useRef(false);
+  const lastX = useRef(0);
+  const lastTime = useRef(0);
+  const velocity = useRef(0);
+  const animationFrameId = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hideLeftTimeoutRef = useRef<number | null>(null);
   const hideRightTimeoutRef = useRef<number | null>(null);
@@ -24,21 +32,18 @@ export function Carousel({ children, title }: CarouselProps) {
       setCanScrollLeft(canLeft);
       setCanScrollRight(canRight);
 
-      // Mostrar setas imediatamente quando pode scrollar
       if (canLeft) {
         setShowLeftArrow(true);
-        // Limpar timeout anterior se existir
         if (hideLeftTimeoutRef.current) {
           clearTimeout(hideLeftTimeoutRef.current);
         }
       } else {
-        // Esconder com delay quando não pode mais scrollar
         if (hideLeftTimeoutRef.current) {
           clearTimeout(hideLeftTimeoutRef.current);
         }
         hideLeftTimeoutRef.current = window.setTimeout(() => {
           setShowLeftArrow(false);
-        }, 600); // 600ms de delay
+        }, 600);
       }
 
       if (canRight) {
@@ -52,7 +57,7 @@ export function Carousel({ children, title }: CarouselProps) {
         }
         hideRightTimeoutRef.current = window.setTimeout(() => {
           setShowRightArrow(false);
-        }, 600); // 600ms de delay
+        }, 600);
       }
     }
   };
@@ -67,18 +72,20 @@ export function Carousel({ children, title }: CarouselProps) {
       return () => {
         container.removeEventListener("scroll", checkForScrollPosition);
         window.removeEventListener("resize", checkForScrollPosition);
-        // Limpar timeouts ao desmontar
         if (hideLeftTimeoutRef.current) {
           clearTimeout(hideLeftTimeoutRef.current);
         }
         if (hideRightTimeoutRef.current) {
           clearTimeout(hideRightTimeoutRef.current);
         }
+        if (animationFrameId.current) {
+          cancelAnimationFrame(animationFrameId.current);
+        }
       };
     }
   }, []);
 
-  const scrollLeft = () => {
+  const scrollLeftButton = () => {
     if (containerRef.current) {
       const scrollAmount = containerRef.current.clientWidth * 0.8;
       containerRef.current.scrollBy({
@@ -88,7 +95,7 @@ export function Carousel({ children, title }: CarouselProps) {
     }
   };
 
-  const scrollRight = () => {
+  const scrollRightButton = () => {
     if (containerRef.current) {
       const scrollAmount = containerRef.current.clientWidth * 0.8;
       containerRef.current.scrollBy({
@@ -98,25 +105,133 @@ export function Carousel({ children, title }: CarouselProps) {
     }
   };
 
+  const applyMomentum = (initialVelocity: number) => {
+    if (!containerRef.current) return;
+
+    let currentVelocity = initialVelocity;
+    const friction = 0.92;
+    const minVelocity = 0.5;
+
+    const animate = () => {
+      if (!containerRef.current) return;
+
+      containerRef.current.scrollLeft += currentVelocity;
+
+      currentVelocity *= friction;
+
+      if (Math.abs(currentVelocity) > minVelocity) {
+        animationFrameId.current = requestAnimationFrame(animate);
+      } else {
+        animationFrameId.current = null;
+      }
+    };
+
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current);
+    }
+
+    animationFrameId.current = requestAnimationFrame(animate);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    e.preventDefault();
+
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current);
+      animationFrameId.current = null;
+    }
+
+    setIsDragging(true);
+    setStartX(e.clientX);
+    setScrollLeftStart(containerRef.current.scrollLeft);
+    hasMoved.current = false;
+    lastX.current = e.clientX;
+    lastTime.current = Date.now();
+    velocity.current = 0;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !containerRef.current) return;
+    e.preventDefault();
+
+    const x = e.clientX;
+    const currentTime = Date.now();
+    const timeDiff = currentTime - lastTime.current;
+    const distanceDiff = lastX.current - x;
+
+    if (timeDiff > 0) {
+      velocity.current = distanceDiff / timeDiff;
+    }
+
+    lastX.current = x;
+    lastTime.current = currentTime;
+
+    const walk = startX - x;
+
+    if (Math.abs(walk) > 5) {
+      hasMoved.current = true;
+    }
+
+    containerRef.current.scrollLeft = scrollLeftStart + walk;
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+
+    if (hasMoved.current && Math.abs(velocity.current) > 0.1) {
+      const momentumVelocity = velocity.current * 20;
+      applyMomentum(momentumVelocity);
+    }
+
+    if (hasMoved.current) {
+      e.stopPropagation();
+      const target = e.target as HTMLElement;
+      target.onclick = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        target.onclick = null;
+      };
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleDragStart = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (hasMoved.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      hasMoved.current = false;
+    }
+  };
+
   return (
-    <section>
-      <h3 className="mb-3 text-[26px] font-semibold tracking-wider">{title}</h3>
+    <section className="-mx-4 md:-mx-6 lg:-mx-8">
+      <h3 className="mb-3 px-4 text-[26px] font-semibold tracking-wide md:px-6 lg:px-8">
+        {title}
+      </h3>
 
       <div
         className="group relative"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Seta Esquerda */}
         {showLeftArrow && (
           <button
-            onClick={scrollLeft}
+            onClick={scrollLeftButton}
             disabled={!canScrollLeft}
-            className={`absolute top-0 bottom-0 left-0 z-30 flex w-12 items-center justify-center bg-black/78 to-transparent transition-opacity duration-500 ${isHovered && canScrollLeft ? "opacity-100" : "opacity-0"} ${canScrollLeft ? "cursor-pointer" : "cursor-default"} disabled:cursor-default`}
+            className={`absolute top-0 bottom-0 left-4 z-30 hidden w-[4%] items-center justify-center bg-black/78 to-transparent transition-opacity duration-500 lg:flex ${isHovered && canScrollLeft ? "opacity-100" : "opacity-0"} ${canScrollLeft ? "cursor-pointer" : "cursor-default"} disabled:cursor-default`}
             aria-label="Voltar"
           >
             <svg
-              className={`h-8 w-8 text-white drop-shadow-2xl transition-opacity duration-300 md:h-10 md:w-10 ${
+              className={`h-[50%] w-[50%] text-white drop-shadow-2xl transition-opacity duration-300 ${
                 canScrollLeft ? "opacity-100" : "opacity-50"
               }`}
               fill="none"
@@ -133,28 +248,38 @@ export function Carousel({ children, title }: CarouselProps) {
           </button>
         )}
 
-        {/* Container do Carrossel */}
         <div
           ref={containerRef}
-          className="scrollbar-hide overflow-x-auto overflow-y-hidden"
+          className={`scrollbar-hide overflow-x-auto overflow-y-hidden select-none ${
+            isDragging ? "cursor-grabbing" : "lg:cursor-grab"
+          }`}
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
           }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          onDragStart={handleDragStart}
+          onClick={handleClick}
         >
-          <div className="flex gap-3 pb-2 md:gap-4">{children}</div>
+          <div className="flex gap-3 px-4 pb-2 md:gap-4 md:px-6 lg:px-8">
+            {children}
+
+            <div className="w-1 shrink-0 md:w-2 lg:w-4" aria-hidden="true" />
+          </div>
         </div>
 
-        {/* Seta Direita */}
         {showRightArrow && (
           <button
-            onClick={scrollRight}
+            onClick={scrollRightButton}
             disabled={!canScrollRight}
-            className={`absolute top-0 right-0 bottom-0 z-30 flex w-12 items-center justify-center bg-black/78 to-transparent transition-opacity duration-500 ${isHovered && canScrollRight ? "opacity-100" : "opacity-0"} ${canScrollRight ? "cursor-pointer" : "cursor-default"} disabled:cursor-default`}
+            className={`absolute top-0 right-4 bottom-0 z-30 hidden w-[4%] items-center justify-center bg-black/78 to-transparent transition-opacity duration-500 lg:flex ${isHovered && canScrollRight ? "opacity-100" : "opacity-0"} ${canScrollRight ? "cursor-pointer" : "cursor-default"} disabled:cursor-default`}
             aria-label="Avançar"
           >
             <svg
-              className={`h-8 w-8 text-white drop-shadow-2xl transition-opacity duration-300 md:h-10 md:w-10 ${
+              className={`h-[50%] w-[50%] text-white drop-shadow-2xl transition-opacity duration-300 ${
                 canScrollRight ? "opacity-100" : "opacity-50"
               }`}
               fill="none"
@@ -170,8 +295,6 @@ export function Carousel({ children, title }: CarouselProps) {
             </svg>
           </button>
         )}
-
-        {/* Gradiente sutil à direita para indicar mais conteúdo */}
       </div>
 
       <style>{`

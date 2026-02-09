@@ -11,4 +11,5 @@ body {
   background-color: #080a09;
   color: #ececec;
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
 }

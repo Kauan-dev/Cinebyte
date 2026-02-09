@@ -7,7 +7,7 @@ export function Layout() {
     <div className="page">
       <Header />
 
-      <main className="mx-auto max-w-360 px-8 py-8">
+      <main className="mx-auto px-4 py-4">
         <Outlet />
       </main>
 

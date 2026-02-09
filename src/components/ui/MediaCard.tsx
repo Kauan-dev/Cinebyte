@@ -7,10 +7,9 @@ interface MediaCardProps {
 
 export function MediaCard({ media }: MediaCardProps) {
   return (
-    <article className="w-35 shrink-0 sm:w-40 md:w-45 lg:w-50 xl:w-55">
+    <article className="w-42 shrink-0 sm:w-40 md:w-45 lg:w-50 xl:w-[16.7%]">
       <Link to={`/movie/${media.id}`} title={media.title ?? media.name}>
         <div className="group/card relative aspect-2/3 cursor-pointer overflow-hidden rounded-md">
-          {/* Imagem */}
           <img
             className="h-full w-full object-cover transition-transform duration-300 ease-out"
             src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
@@ -18,15 +17,12 @@ export function MediaCard({ media }: MediaCardProps) {
             loading="lazy"
           />
 
-          {/* Overlay com informações - aparece no hover */}
           <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover/card:opacity-100">
             <div className="absolute right-0 bottom-0 left-0 translate-y-2 transform p-3 transition-transform duration-300 group-hover/card:translate-y-0">
-              {/* Título */}
               <h4 className="mb-2 line-clamp-2 text-sm font-semibold text-white md:text-base">
                 {media.title ?? media.name}
               </h4>
 
-              {/* Avaliação */}
               {media.vote_average > 0 && (
                 <div className="flex items-center gap-1.5">
                   <svg
