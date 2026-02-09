@@ -43,7 +43,7 @@ export function Home() {
 
   return (
     <div className="homepage">
-      <div className="mb-7">
+      <div className="mb-7 px-4">
         <Link to="/movie/872585">
           <img
             className="h-60 w-full rounded-md object-cover"

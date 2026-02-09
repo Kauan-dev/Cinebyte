@@ -213,8 +213,8 @@ export function Carousel({ children, title }: CarouselProps) {
   };
 
   return (
-    <section className="-mx-4 md:-mx-6 lg:-mx-8">
-      <h3 className="mb-3 px-4 text-[26px] font-semibold tracking-wide md:px-6 lg:px-8">
+    <section className="relative">
+      <h3 className="mb-3 px-4 text-[26px] font-semibold tracking-wide">
         {title}
       </h3>
 
@@ -227,7 +227,7 @@ export function Carousel({ children, title }: CarouselProps) {
           <button
             onClick={scrollLeftButton}
             disabled={!canScrollLeft}
-            className={`absolute top-0 bottom-0 left-4 z-30 hidden w-[4%] items-center justify-center bg-black/78 to-transparent transition-opacity duration-500 lg:flex ${isHovered && canScrollLeft ? "opacity-100" : "opacity-0"} ${canScrollLeft ? "cursor-pointer" : "cursor-default"} disabled:cursor-default`}
+            className={`absolute top-0 bottom-0 left-0 z-30 hidden w-[4%] items-center justify-center bg-black/78 to-transparent transition-opacity duration-500 lg:flex ${isHovered && canScrollLeft ? "opacity-100" : "opacity-0"} ${canScrollLeft ? "cursor-pointer" : "cursor-default"} disabled:cursor-default`}
             aria-label="Voltar"
           >
             <svg
@@ -264,10 +264,10 @@ export function Carousel({ children, title }: CarouselProps) {
           onDragStart={handleDragStart}
           onClick={handleClick}
         >
-          <div className="flex gap-3 px-4 pb-2 md:gap-4 md:px-6 lg:px-8">
+          <div className="flex gap-3 px-4 pb-2">
             {children}
 
-            <div className="w-1 shrink-0 md:w-2 lg:w-4" aria-hidden="true" />
+            <div className="w-1 shrink-0 lg:w-4" aria-hidden="true" />
           </div>
         </div>
 
@@ -275,7 +275,7 @@ export function Carousel({ children, title }: CarouselProps) {
           <button
             onClick={scrollRightButton}
             disabled={!canScrollRight}
-            className={`absolute top-0 right-4 bottom-0 z-30 hidden w-[4%] items-center justify-center bg-black/78 to-transparent transition-opacity duration-500 lg:flex ${isHovered && canScrollRight ? "opacity-100" : "opacity-0"} ${canScrollRight ? "cursor-pointer" : "cursor-default"} disabled:cursor-default`}
+            className={`absolute top-0 right-0 bottom-0 z-30 hidden w-[4%] items-center justify-center bg-black/78 to-transparent transition-opacity duration-500 lg:flex ${isHovered && canScrollRight ? "opacity-100" : "opacity-0"} ${canScrollRight ? "cursor-pointer" : "cursor-default"} disabled:cursor-default`}
             aria-label="Avançar"
           >
             <svg
