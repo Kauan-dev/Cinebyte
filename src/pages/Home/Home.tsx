@@ -54,7 +54,7 @@ export function Home() {
         </Link>
       </div>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-3">
         <MediaSection title="Filmes em cartaz" data={nowPlaying} />
         <MediaSection title="Em breve nos cinemas" data={upcoming} />
         <MediaSection title="Series em exibição" data={onTheAir} />

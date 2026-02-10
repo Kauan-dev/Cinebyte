@@ -1,5 +1,6 @@
 import { Header } from "./Header";
 import { Outlet } from "react-router";
+import { MobileNavbar } from "./MobileNavbar";
 import { Footer } from "./Footer";
 
 // Layout exclusivo para páginas que não devem herdar os paddings do layout padrão
@@ -12,6 +13,8 @@ export function MovieLayout() {
       <main>
         <Outlet />
       </main>
+
+      <MobileNavbar />
 
       <Footer />
     </div>

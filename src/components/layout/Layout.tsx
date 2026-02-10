@@ -1,5 +1,6 @@
 import { Header } from "./Header";
 import { Outlet } from "react-router";
+import { MobileNavbar } from "./MobileNavbar";
 import { Footer } from "./Footer";
 
 export function Layout() {
@@ -12,6 +13,7 @@ export function Layout() {
       </main>
 
       <Footer />
+      <MobileNavbar />
     </div>
   );
 }

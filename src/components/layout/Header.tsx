@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import FavoritesIcon from "../../assets/icons/star.svg?react";
+import FavoritesIcon from "../../assets/icons/favorites.svg?react";
 
 export function Header() {
   return (
@@ -15,7 +15,7 @@ export function Header() {
             />
           </Link>
 
-          <div className="flex gap-8">
+          <div className="hidden gap-8 md:flex">
             <Link className="text-[15px]" to="/">
               MOVIES
             </Link>
@@ -25,7 +25,7 @@ export function Header() {
           </div>
         </div>
 
-        <Link to="/watch-later" title="Watch list">
+        <Link to="/watch-later" title="Watch list" className="hidden md:block">
           <FavoritesIcon className="size-7.5 duration-300 ease-in-out hover:text-[#e6b91e]" />
         </Link>
       </div>
