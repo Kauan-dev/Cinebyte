@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export function MobileNavbar() {
   return (
-    <div className="fixed bottom-0 z-99 flex h-17 w-full items-center justify-center gap-14 bg-black md:hidden">
+    <div className="fixed bottom-0 z-99 flex h-17 w-full items-center justify-center gap-14 bg-black md:hidden [@media(max-width:360px)]:gap-10">
       <Link
         className="font-google flex flex-col items-center gap-1 text-[10px] font-semibold"
         to="/"
@@ -38,7 +38,7 @@ export function MobileNavbar() {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="lucide lucide-clapperboard-icon lucide-clapperboard"
+          className="lucide lucide-clapperboard-icon lucide-clapperboard"
         >
           <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" />
           <path d="m6.2 5.3 3.1 3.9" />

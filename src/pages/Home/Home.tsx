@@ -43,10 +43,10 @@ export function Home() {
 
   return (
     <div className="homepage">
-      <div className="mb-7 px-4">
+      <div className="mb-4 h-[60vw] px-4 sm:mb-5 sm:h-[45vw] md:h-[40vw] xl:h-[30vw] [@media(min-width:400px)_and_(max-width:640px)]:h-[58vw]">
         <Link to="/movie/872585">
           <img
-            className="h-60 w-full rounded-md object-cover"
+            className="h-full w-full rounded-md object-cover"
             src={featuredBanner}
             title="Oppenheimer"
             alt=""
