@@ -43,13 +43,13 @@ export function MediaSection({ title, data }: MediaSectionProps) {
               >
                 <div className="relative overflow-hidden rounded-md transition-transform duration-300 hover:scale-105">
                   <img
-                    className="aspect-[2/3] w-full object-cover"
+                    className="aspect-2/3 w-full object-cover"
                     src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
                     alt={media.title ?? media.name}
                     loading="lazy"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/card:opacity-100">
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/card:opacity-100">
                     <div className="absolute right-0 bottom-0 left-0 p-4">
                       <h4 className="mb-2 line-clamp-2 text-sm font-semibold text-white md:text-base">
                         {media.title ?? media.name}

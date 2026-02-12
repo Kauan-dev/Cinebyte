@@ -83,19 +83,27 @@ export function Movie() {
       }}
     >
       <div className="bg-black/85">
-        <div className="m-auto flex h-[calc(100vh-68px)] max-w-360 justify-between px-4 py-8 md:px-6 lg:px-8">
+        <div className="m-auto flex justify-between px-4 py-8 md:h-[calc(100vh-68px)] md:px-6 lg:px-8">
           <div className="flex h-fit w-full items-center justify-between">
-            <div className="flex max-w-137.5 flex-col gap-8">
+            <div className="flex flex-col gap-8">
               <h2>MOVIE</h2>
 
-              <div className="flex items-end gap-2.5">
-                <h1 className="text-3xl">{movieDetails.title}</h1>
-                <span className="mb-0.5 text-[15px] text-neutral-500">
+              <div className="flex items-baseline gap-2.5">
+                <h1 className="flex text-3xl">{movieDetails.title}</h1>
+                <span className="text-[15px] text-neutral-500">
                   {releaseYear}
                 </span>
               </div>
 
-              <p>{movieDetails.overview}</p>
+              <div>
+                <img
+                  className="w-full md:hidden"
+                  src={`https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}
+                  alt=""
+                />
+              </div>
+
+              <p className="max-w-137.5">{movieDetails.overview}</p>
 
               <div className="flex items-center gap-4 text-lg">
                 <img src={logo} alt="" className="w-15" />
@@ -115,7 +123,7 @@ export function Movie() {
               </div>
             </div>
 
-            <div>
+            <div className="ml-50 hidden md:block">
               <img
                 className="w-74"
                 src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`}
