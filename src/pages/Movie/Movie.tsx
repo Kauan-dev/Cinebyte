@@ -83,7 +83,7 @@ export function Movie() {
       }}
     >
       <div className="bg-black/85">
-        <div className="m-auto flex h-[calc(100vh-68px)] max-w-360 justify-between px-8 py-8">
+        <div className="m-auto flex h-[calc(100vh-68px)] max-w-360 justify-between px-4 py-8 md:px-6 lg:px-8">
           <div className="flex h-fit w-full items-center justify-between">
             <div className="flex max-w-137.5 flex-col gap-8">
               <h2>MOVIE</h2>

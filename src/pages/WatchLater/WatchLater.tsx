@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Container } from "@/components/layout/Container";
 
 type WatchListItem = {
   id: number;
@@ -20,7 +21,7 @@ export function WatchLater() {
   }
 
   return (
-    <div className="flex flex-wrap gap-3 px-4">
+    <Container className="flex flex-wrap gap-3 px-4">
       {watchLaterList.map((media) => {
         return (
           <article key={media.id}>
@@ -34,6 +35,6 @@ export function WatchLater() {
           </article>
         );
       })}
-    </div>
+    </Container>
   );
 }

@@ -5,6 +5,7 @@ import featuredBanner from "../../assets/images/featuredBanner.jpg";
 
 import type { Media } from "../../types/media";
 import { MediaSection } from "../../components/sections/MediaSection";
+import { Container } from "@/components/layout/Container";
 
 export function Home() {
   const [nowPlaying, setNowPlaying] = useState<Media[]>([]);
@@ -12,7 +13,7 @@ export function Home() {
   const [onTheAir, setOnTheAir] = useState<Media[]>([]);
   const [popular, setPopular] = useState<Media[]>([]);
 
-  const itemLimit = 20;
+  const itemLimit = 18;
 
   useEffect(() => {
     async function loadHomeData() {
@@ -43,7 +44,7 @@ export function Home() {
 
   return (
     <div className="homepage">
-      <div className="mb-4 h-[60vw] px-4 sm:mb-5 sm:h-[45vw] md:h-[40vw] xl:h-[30vw] [@media(min-width:400px)_and_(max-width:640px)]:h-[58vw]">
+      <Container className="mb-4 h-[60vw] sm:mb-5 sm:h-[45vw] md:h-[40vw] xl:h-[30vw] [@media(min-width:400px)_and_(max-width:640px)]:h-[58vw]">
         <Link to="/movie/872585">
           <img
             className="h-full w-full rounded-md object-cover"
@@ -52,7 +53,7 @@ export function Home() {
             alt=""
           />
         </Link>
-      </div>
+      </Container>
 
       <div className="flex flex-col gap-3">
         <MediaSection title="Filmes em cartaz" data={nowPlaying} />
