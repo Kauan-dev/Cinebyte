@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
 import { Container } from "@/components/layout/Container";
+import { Card } from "@/components/ui/card";
 
 type WatchListItem = {
   id: number;
-  title: string;
+  title?: string;
+  name?: string;
   poster_path?: string | null;
+  vote_average: number;
 };
 
 export function WatchLater() {
@@ -24,14 +26,14 @@ export function WatchLater() {
     <Container className="flex flex-wrap gap-3 px-4">
       {watchLaterList.map((media) => {
         return (
-          <article key={media.id}>
-            <Link to={`/movie/${media.id}`} title={media.title}>
-              <img
-                className="w-54"
-                src={`https://image.tmdb.org/t/p/original/${media.poster_path}`}
-                alt=""
-              />
-            </Link>
+          <article key={media.id} className="w-54">
+            <Card
+              id={media.id}
+              vote_average={media.vote_average}
+              poster_path={media.poster_path}
+              name={media.name}
+              title={media.title}
+            />
           </article>
         );
       })}

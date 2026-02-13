@@ -18,6 +18,7 @@ type WatchListItem = {
   id: number;
   title: string;
   poster_path?: string | null;
+  vote_average: number;
 };
 
 const WATCHLIST_KEY = "cinebyte:watchList";
@@ -62,6 +63,7 @@ export function Movie() {
       id: movieDetails.id,
       title: movieDetails.title,
       poster_path: movieDetails.poster_path,
+      vote_average: movieDetails.vote_average,
     });
 
     localStorage.setItem(WATCHLIST_KEY, JSON.stringify(watchList));
