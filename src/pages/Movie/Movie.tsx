@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import logo from "../../assets/images/logo.png";
-import { Button } from "../../components/ui/Button";
+import { Button } from "../../components/ui/button";
 
 type MediaDetails = {
   id: number;
@@ -113,15 +113,11 @@ export function Movie() {
               </div>
 
               <div className="font-google flex gap-4">
-                <Button
-                  label="Watch trailer"
-                  onClick={handleWatchTrailer}
-                ></Button>
+                <Button onClick={handleWatchTrailer}>Watch trailer</Button>
 
-                <Button
-                  label="Add to Watchlist"
-                  onClick={handleAddToWatchLater}
-                ></Button>
+                <Button onClick={handleAddToWatchLater}>
+                  Add to Watchlist
+                </Button>
               </div>
             </div>
 
