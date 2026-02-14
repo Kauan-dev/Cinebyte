@@ -88,7 +88,7 @@ export function Movie() {
         <div className="m-auto flex justify-between px-4 py-8 md:h-[calc(100vh-68px)] md:px-6 lg:px-8">
           <div className="flex h-fit w-full items-center justify-between">
             <div className="flex flex-col gap-8">
-              <h2>MOVIE</h2>
+              <h2>FILME</h2>
 
               <div className="flex items-baseline gap-2.5">
                 <h1 className="flex text-3xl">{movieDetails.title}</h1>
@@ -113,10 +113,50 @@ export function Movie() {
               </div>
 
               <div className="font-google flex gap-4">
-                <Button onClick={handleWatchTrailer}>Watch trailer</Button>
+                <Button
+                  variant={"outline"}
+                  onClick={handleAddToWatchLater}
+                  size={"lg"}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    className="lucide lucide-bookmark-icon lucide-bookmark"
+                  >
+                    <path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" />
+                  </svg>
+                  <span>Favoritar</span>
+                </Button>
 
-                <Button onClick={handleAddToWatchLater}>
-                  Add to Watchlist
+                <Button
+                  variant="outline"
+                  size={"lg"}
+                  onClick={handleWatchTrailer}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    className="lucide lucide-tv-minimal-play-icon lucide-tv-minimal-play"
+                  >
+                    <path d="M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z" />
+                    <path d="M7 21h10" />
+                    <rect width="20" height="14" x="2" y="3" rx="2" />
+                  </svg>
+                  <span>Assistir trailer</span>
                 </Button>
               </div>
             </div>

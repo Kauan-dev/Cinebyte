@@ -18,10 +18,10 @@ export function Header() {
 
           <div className="hidden gap-8 md:flex">
             <Link className="text-[15px]" to="/">
-              MOVIES
+              FILMES
             </Link>
             <Link className="text-[15px]" to="/">
-              TV SHOWS
+              SÉRIES
             </Link>
           </div>
         </div>
