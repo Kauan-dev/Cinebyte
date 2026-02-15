@@ -22,7 +22,7 @@ export function Home() {
       <Container className="mb-4 h-[60vw] sm:mb-5 sm:h-[45vw] md:h-[40vw] xl:h-[30vw] [@media(min-width:400px)_and_(max-width:640px)]:h-[58vw]">
         <Link to="/movie/872585">
           <img
-            className="h-full w-full rounded-md object-cover"
+            className="h-full w-full rounded-md object-cover outline-2 outline-offset-3 outline-transparent transition-all duration-300 ease-in-out select-none hover:outline-neutral-50 focus-visible:outline-neutral-50"
             src={featuredBanner}
             title="Oppenheimer"
             alt=""
