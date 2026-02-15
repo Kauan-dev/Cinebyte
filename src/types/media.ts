@@ -4,4 +4,5 @@ export type Media = {
   name?: string;
   vote_average: number;
   poster_path?: string | null;
+  media_type: "movie" | "tv";
 };

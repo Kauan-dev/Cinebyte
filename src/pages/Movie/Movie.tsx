@@ -24,12 +24,12 @@ type WatchListItem = {
 const WATCHLIST_KEY = "cinebyte:watchList";
 
 export function Movie() {
-  const { id } = useParams();
+  const { media_type, id } = useParams();
   const [movieDetails, setMovieDetails] = useState<MediaDetails | null>(null);
 
   useEffect(() => {
     async function loadMovieDetails() {
-      const response = await api.get(`movie/${id}`);
+      const response = await api.get(`${media_type}/${id}`);
       setMovieDetails(response.data);
     }
 
@@ -39,7 +39,7 @@ export function Movie() {
   function handleWatchTrailer() {
     if (!movieDetails) return;
 
-    const trailerUrl = `https://www.youtube.com/results?search_query=${movieDetails.title}+${releaseYear}+oficial+trailer`;
+    const trailerUrl = `https://www.youtube.com/results?search_query=${movieDetails.title}+oficial+trailer`;
     window.open(trailerUrl, "_blank", "noopener,noreferrer");
   }
 
@@ -75,7 +75,7 @@ export function Movie() {
     return <div>Carregando detalhes...</div>;
   }
 
-  const releaseYear = movieDetails.release_date.split("-")[0];
+  // const releaseYear = movieDetails.release_date.split("-")[0];
 
   return (
     <div
@@ -92,9 +92,7 @@ export function Movie() {
 
               <div className="flex items-baseline gap-2.5">
                 <h1 className="flex text-3xl">{movieDetails.title}</h1>
-                <span className="text-[15px] text-neutral-500">
-                  {releaseYear}
-                </span>
+                <span className="text-[15px] text-neutral-500"></span>
               </div>
 
               <div>
@@ -113,28 +111,6 @@ export function Movie() {
               </div>
 
               <div className="font-google flex gap-4">
-                <Button
-                  variant={"outline"}
-                  onClick={handleAddToWatchLater}
-                  size={"lg"}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    className="lucide lucide-bookmark-icon lucide-bookmark"
-                  >
-                    <path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" />
-                  </svg>
-                  <span>Favoritar</span>
-                </Button>
-
                 <Button
                   variant="outline"
                   size={"lg"}
@@ -157,6 +133,28 @@ export function Movie() {
                     <rect width="20" height="14" x="2" y="3" rx="2" />
                   </svg>
                   <span>Assistir trailer</span>
+                </Button>
+
+                <Button
+                  variant={"outline"}
+                  onClick={handleAddToWatchLater}
+                  size={"lg"}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    className="lucide lucide-bookmark-icon lucide-bookmark"
+                  >
+                    <path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" />
+                  </svg>
+                  <span>Favoritar</span>
                 </Button>
               </div>
             </div>

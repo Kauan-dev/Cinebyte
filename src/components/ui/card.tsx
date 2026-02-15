@@ -5,7 +5,7 @@ export function Card(media: Media) {
   return (
     <article>
       <Link
-        to={`/movie/${media.id}`}
+        to={`${media.media_type}/${media.id}`}
         title={media.title ?? media.name}
         className="group/card block"
       >

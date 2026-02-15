@@ -13,7 +13,7 @@ export function AppRoutes() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/movie/:id" element={<Movie />} />
+        <Route path=":media_type/:id" element={<Movie />} />
         <Route path="/watch-later" element={<WatchLater />} />
       </Route>
 

@@ -42,6 +42,7 @@ export function MediaSection({ title, data }: MediaSectionProps) {
                 poster_path={media.poster_path}
                 name={media.name}
                 title={media.title}
+                media_type={media.media_type}
               />
             </CarouselItem>
           ))}
