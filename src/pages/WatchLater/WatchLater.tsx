@@ -16,10 +16,10 @@ export function WatchLater() {
   }
 
   return (
-    <Container className="flex flex-wrap gap-3 px-4">
+    <Container className="grid grid-cols-2 gap-3 px-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       {watchLaterList.map((media) => {
         return (
-          <article key={media.id} className="w-54">
+          <article key={media.id} className="w-full">
             <Card
               id={media.id}
               poster_path={media.poster_path}
