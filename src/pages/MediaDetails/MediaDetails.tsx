@@ -22,7 +22,7 @@ type WatchListItem = {
 
 const WATCHLIST_KEY = "cinebyte:watchList";
 
-export function Movie() {
+export function MediaDetails() {
   const { media_type, id } = useParams();
   const [movieDetails, setMovieDetails] = useState<MediaDetails | null>(null);
 
