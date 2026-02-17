@@ -9,14 +9,18 @@ export function normalize(
 ): Media[] {
   return items.map((item) => ({
     id: item.id,
+    media_type: mediaType,
     title: item.title ?? item.name ?? "",
+    overview: item.overview ?? "",
     vote_average: item.vote_average ?? 0,
     poster_path: item.poster_path ?? null,
-    media_type: mediaType,
+    backdrop_path: item.backdrop_path ?? null,
+    release_date: item.release_date ?? item.first_air_date,
   }));
 }
 
 export async function fetchTMDB(path: string, mediaType: "movie" | "tv") {
   const response = await api.get(path);
+  console.log(response.data.results);
   return normalize(response.data.results.slice(0, itemsLimit), mediaType);
 }

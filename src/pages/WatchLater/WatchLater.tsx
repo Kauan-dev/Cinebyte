@@ -7,6 +7,7 @@ type WatchListItem = {
   name?: string;
   poster_path?: string | null;
   vote_average: number;
+  media_type: "movie" | "tv";
 };
 
 export function WatchLater() {
@@ -33,6 +34,7 @@ export function WatchLater() {
               poster_path={media.poster_path}
               name={media.name}
               title={media.title}
+              media_type={media.media_type}
             />
           </article>
         );

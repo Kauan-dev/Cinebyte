@@ -5,7 +5,7 @@ export function Card(media: Media) {
   return (
     <article>
       <Link
-        to={`${media.media_type}/${media.id}`}
+        to={`/${media.media_type}/${media.id}`}
         className="block rounded-sm outline-2 outline-offset-3 outline-transparent transition-all duration-300 ease-in-out hover:scale-102 hover:outline-neutral-50 focus-visible:scale-102 focus-visible:outline-neutral-50"
       >
         <img

@@ -1,24 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
+import type { Media } from "@/types/media";
 import logo from "../../assets/images/logo.png";
 import { Button } from "../../components/ui/button";
 
-type MediaDetails = {
-  id: number;
-  title: string;
+type MediaDetails = Media & {
   overview: string;
-  release_date: string;
-  vote_average: number;
-  poster_path?: string | null;
+  release_date?: string;
+  first_air_date?: string | null;
   backdrop_path?: string | null;
+  vote_average: number | 0;
 };
 
 type WatchListItem = {
   id: number;
-  title: string;
+  title?: string;
   poster_path?: string | null;
-  vote_average: number;
+  media_type: "movie" | "tv";
 };
 
 const WATCHLIST_KEY = "cinebyte:watchList";
@@ -39,7 +38,7 @@ export function Movie() {
   function handleWatchTrailer() {
     if (!movieDetails) return;
 
-    const trailerUrl = `https://www.youtube.com/results?search_query=${movieDetails.title}+oficial+trailer`;
+    const trailerUrl = `https://www.youtube.com/results?search_query=${movieDetails.title ?? movieDetails.name}+${releaseYear}+oficial+trailer`;
     window.open(trailerUrl, "_blank", "noopener,noreferrer");
   }
 
@@ -61,9 +60,9 @@ export function Movie() {
 
     watchList.unshift({
       id: movieDetails.id,
-      title: movieDetails.title,
+      title: movieDetails.title ?? movieDetails.name,
       poster_path: movieDetails.poster_path,
-      vote_average: movieDetails.vote_average,
+      media_type: media_type as "movie" | "tv",
     });
 
     localStorage.setItem(WATCHLIST_KEY, JSON.stringify(watchList));
@@ -75,7 +74,11 @@ export function Movie() {
     return <div>Carregando detalhes...</div>;
   }
 
-  // const releaseYear = movieDetails.release_date.split("-")[0];
+  const releaseYear = (
+    movieDetails.release_date ??
+    movieDetails.first_air_date ??
+    ""
+  ).split("-")[0];
 
   return (
     <div
@@ -88,20 +91,31 @@ export function Movie() {
         <div className="m-auto flex justify-between px-4 py-8 md:h-[calc(100vh-68px)] md:px-6 lg:px-8">
           <div className="flex h-fit w-full items-center justify-between">
             <div className="flex flex-col gap-8">
-              <h2>FILME</h2>
+              <h2>{media_type === "movie" ? "FILME" : "SÉRIE"}</h2>
 
               <div className="flex items-baseline gap-2.5">
-                <h1 className="flex text-3xl">{movieDetails.title}</h1>
-                <span className="text-[15px] text-neutral-500"></span>
+                <div>
+                  <h1 className="flex items-end gap-2 text-3xl">
+                    {movieDetails.title ?? movieDetails.name}
+                  </h1>
+
+                  <span className="mb-0.75 text-[15px] text-neutral-500">
+                    {
+                      (
+                        movieDetails.release_date ??
+                        movieDetails.first_air_date ??
+                        ""
+                      ).split("-")[0]
+                    }
+                  </span>
+                </div>
               </div>
 
-              <div>
-                <img
-                  className="w-full md:hidden"
-                  src={`https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}
-                  alt=""
-                />
-              </div>
+              <img
+                className="w-full md:hidden"
+                src={`https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}
+                alt=""
+              />
 
               <p className="max-w-137.5">{movieDetails.overview}</p>
 

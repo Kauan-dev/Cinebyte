@@ -15,8 +15,6 @@ export function Home() {
     topRatedMovies,
   } = useHomeData();
 
-  console.log(nowPlayingMovies);
-
   return (
     <div className="homepage">
       <Container className="mb-4 h-[60vw] sm:mb-5 sm:h-[45vw] md:h-[40vw] xl:h-[30vw] [@media(min-width:400px)_and_(max-width:640px)]:h-[58vw]">
