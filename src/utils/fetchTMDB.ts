@@ -10,8 +10,8 @@ export function normalize(
   return items.map((item) => ({
     id: item.id,
     media_type: mediaType,
-    title: item.title ?? item.name ?? "",
-    overview: item.overview ?? "",
+    title: item.title ?? item.name,
+    overview: item.overview ?? "Sinopse indisponível.",
     vote_average: item.vote_average ?? 0,
     poster_path: item.poster_path ?? null,
     backdrop_path: item.backdrop_path ?? null,

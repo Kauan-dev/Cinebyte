@@ -38,10 +38,9 @@ export function MediaSection({ title, data }: MediaSectionProps) {
             >
               <Card
                 id={media.id}
-                vote_average={media.vote_average}
-                poster_path={media.poster_path}
-                name={media.name}
                 title={media.title}
+                name={media.name}
+                poster_path={media.poster_path}
                 media_type={media.media_type}
               />
             </CarouselItem>
