@@ -21,6 +21,5 @@ export function normalize(
 
 export async function fetchTMDB(path: string, mediaType: "movie" | "tv") {
   const response = await api.get(path);
-  console.log(response.data.results);
   return normalize(response.data.results.slice(0, itemsLimit), mediaType);
 }
