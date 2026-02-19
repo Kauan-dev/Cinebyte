@@ -17,7 +17,7 @@ export function Header() {
           </Link>
 
           <div className="hidden gap-8 md:flex">
-            <Link className="text-[15px] tracking-wider" to="/">
+            <Link className="text-[15px] tracking-wider" to="/movies">
               FILMES
             </Link>
             <Link className="text-[15px]" to="/">

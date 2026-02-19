@@ -26,7 +26,7 @@ export function MobileNavbar() {
       </Link>
       <Link
         className="font-google flex flex-col items-center gap-1 text-[10px] font-semibold"
-        to="/"
+        to="/movies"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

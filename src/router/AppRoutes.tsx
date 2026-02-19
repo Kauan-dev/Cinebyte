@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router";
 import { Layout } from "../components/layout/Layout";
 
 import { Home } from "../pages/Home/Home";
+import { Movies } from "@/pages/Movies/Movies";
 import { MediaDetails } from "../pages/MediaDetails/MediaDetails";
 import { WatchLater } from "../pages/WatchLater/WatchLater";
 
@@ -13,6 +14,7 @@ export function AppRoutes() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
         <Route path=":media_type/:id" element={<MediaDetails />} />
         <Route path="/watch-later" element={<WatchLater />} />
       </Route>
