@@ -20,7 +20,7 @@ export function Header() {
             <Link className="text-[15px] tracking-wider" to="/movies">
               FILMES
             </Link>
-            <Link className="text-[15px]" to="/">
+            <Link className="text-[15px]" to="/tv-series">
               SÉRIES
             </Link>
           </div>
