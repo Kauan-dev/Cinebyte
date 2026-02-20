@@ -30,7 +30,7 @@ export function Home() {
 
       <div className="flex flex-col gap-3">
         <MediaSection title="Filmes em cartaz" data={nowPlayingMovies} />
-        <MediaSection title="Series populares" data={popularSeries} />
+        <MediaSection title="Series populares da semana" data={popularSeries} />
         <MediaSection title="Em breve nos cinemas" data={upcomingMovies} />
         <MediaSection title="Series em alta" data={weekTrendingSeries} />
         <MediaSection title="Filmes populares" data={popularMovies} />

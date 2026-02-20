@@ -8,7 +8,7 @@ export function TVSeries() {
   return (
     <div className="tvseries-page">
       <div className="flex flex-col gap-3">
-        <MediaSection title="Series populares" data={popularSeries} />
+        <MediaSection title="Series populares da semana" data={popularSeries} />
         <MediaSection title="Series em alta" data={weekTrendingSeries} />
         <MediaSection title="Séries mais bem avaliadas" data={topRatedSeries} />
       </div>
