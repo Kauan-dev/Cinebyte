@@ -3,6 +3,7 @@ import type { WatchListItem } from "@/types/media";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { Bookmark } from "lucide-react";
 
 export function WatchLater() {
   const [favoritesList, setFavoritesList] = useState<WatchListItem[]>([]);
@@ -37,8 +38,11 @@ export function WatchLater() {
 
   if (favoritesList.length == 0) {
     return (
-      <div>
-        <h1>NÃO HÁ FILMES SALVOS!</h1>
+      <div className="flex h-[calc(100vh-84px-81px)] flex-col items-center justify-center gap-4 text-neutral-500">
+        <Bookmark size={48} />
+        <h1 className="text-2xl font-bold text-neutral-500">
+          Sua lista está vazia!
+        </h1>
       </div>
     );
   }

@@ -17,10 +17,10 @@ export function Header() {
           </Link>
 
           <div className="hidden gap-8 md:flex">
-            <Link className="text-[15px] tracking-wider" to="/movies">
+            <Link className="text-[15px] tracking-wide" to="/movies">
               FILMES
             </Link>
-            <Link className="text-[15px]" to="/tv-series">
+            <Link className="text-[15px] tracking-wide" to="/tv-series">
               SÉRIES
             </Link>
           </div>
