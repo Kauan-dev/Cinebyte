@@ -38,7 +38,7 @@ export function WatchLater() {
 
   if (favoritesList.length == 0) {
     return (
-      <div className="flex h-[calc(100vh-84px-81px)] flex-col items-center justify-center gap-4 text-neutral-500">
+      <div className="flex h-[calc(100vh-84px-60px)] flex-col items-center justify-center gap-4 text-neutral-500">
         <Bookmark size={48} />
         <h1 className="text-2xl font-bold text-neutral-500">
           Sua lista está vazia!
@@ -48,47 +48,49 @@ export function WatchLater() {
   }
 
   return (
-    <Container className="grid grid-cols-2 gap-3 px-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-      {favoritesList.map((media) => {
-        return (
-          <article key={media.id} className="group relative w-full">
-            <Card
-              id={media.id}
-              poster_path={media.poster_path}
-              name={media.name}
-              title={media.title}
-              media_type={media.media_type}
-            />
-            <Button
-              onClick={() =>
-                handleRemoveFavorite(
-                  media.id,
-                  media.title ?? media.name ?? "Título indisponível",
-                )
-              }
-              variant={"outline"}
-              size={"icon-sm"}
-              className="absolute top-1.5 right-1.5 z-30 rounded-full opacity-100 transition-opacity duration-200 sm:opacity-0 sm:group-hover:opacity-100"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="lucide lucide-x-icon lucide-x"
+    <Container className="sm:h-screen">
+      <div className="grid grid-cols-2 gap-3 pb-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+        {favoritesList.map((media) => {
+          return (
+            <article key={media.id} className="group relative w-full">
+              <Card
+                id={media.id}
+                poster_path={media.poster_path}
+                name={media.name}
+                title={media.title}
+                media_type={media.media_type}
+              />
+              <Button
+                onClick={() =>
+                  handleRemoveFavorite(
+                    media.id,
+                    media.title ?? media.name ?? "Título indisponível",
+                  )
+                }
+                variant={"outline"}
+                size={"icon-sm"}
+                className="absolute top-1.5 right-1.5 z-30 rounded-full opacity-100 transition-opacity duration-200 sm:opacity-0 sm:group-hover:opacity-100"
               >
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-            </Button>
-          </article>
-        );
-      })}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-x-icon lucide-x"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </Button>
+            </article>
+          );
+        })}
+      </div>
     </Container>
   );
 }
