@@ -8,12 +8,12 @@ export function Layout() {
     <div className="page">
       <Header />
 
-      <main className="mx-auto pb-4">
+      <main className="mx-auto mb-17 md:mb-0">
         <Outlet />
+        <Footer />
       </main>
 
       <MobileNavbar />
-      <Footer />
     </div>
   );
 }
