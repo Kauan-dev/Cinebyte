@@ -4,6 +4,7 @@ import api from "../../services/api";
 import type { Media } from "@/types/media";
 import logo from "../../assets/images/logo.png";
 import { Button } from "../../components/ui/button";
+import { Bookmark, BookmarkPlus } from "lucide-react";
 
 type MediaDetails = Media & {
   overview: string;
@@ -25,11 +26,21 @@ const WATCHLIST_KEY = "cinebyte:watchList";
 export function MediaDetails() {
   const { media_type, id } = useParams();
   const [movieDetails, setMovieDetails] = useState<MediaDetails | null>(null);
+  const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
     async function loadMovieDetails() {
       const response = await api.get(`${media_type}/${id}`);
       setMovieDetails(response.data);
+
+      const watchList: WatchListItem[] = JSON.parse(
+        localStorage.getItem(WATCHLIST_KEY) ?? "[]",
+      );
+
+      const alreadySaved = watchList.some(
+        (savedMovie) => savedMovie.id === response.data.id,
+      );
+      setIsFavorited(alreadySaved);
     }
 
     loadMovieDetails();
@@ -68,6 +79,30 @@ export function MediaDetails() {
     localStorage.setItem(WATCHLIST_KEY, JSON.stringify(watchList));
 
     alert("Filme salvo com sucesso!");
+    setIsFavorited(true);
+  }
+
+  function handleRemoveFavorite(
+    mediaToRemoveID: number,
+    mediaToRemoveTitle: string,
+  ) {
+    const hasConfirm = confirm(
+      `Tem certeza que deseja remover "${mediaToRemoveTitle}" dos favoritos?`,
+    );
+
+    if (!hasConfirm) {
+      return;
+    }
+
+    let watchList: WatchListItem[] = JSON.parse(
+      localStorage.getItem(WATCHLIST_KEY) ?? "[]",
+    );
+
+    let mediaFilter = watchList.filter((media) => {
+      return media.id !== mediaToRemoveID;
+    });
+
+    localStorage.setItem("cinebyte:watchList", JSON.stringify(mediaFilter));
   }
 
   if (!movieDetails) {
@@ -79,6 +114,8 @@ export function MediaDetails() {
     movieDetails.first_air_date ??
     ""
   ).split("-")[0];
+
+  console.log(isFavorited);
 
   return (
     <div
@@ -151,24 +188,21 @@ export function MediaDetails() {
 
                 <Button
                   variant={"outline"}
-                  onClick={handleAddToWatchLater}
+                  onClick={() => {
+                    if (isFavorited) {
+                      handleRemoveFavorite(
+                        movieDetails.id,
+                        movieDetails.title ?? movieDetails.name ?? "",
+                      );
+                      setIsFavorited(false);
+                    } else {
+                      handleAddToWatchLater();
+                    }
+                  }}
                   size={"lg"}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    className="lucide lucide-bookmark-icon lucide-bookmark"
-                  >
-                    <path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" />
-                  </svg>
-                  <span>Favoritar</span>
+                  {isFavorited ? <Bookmark fill="#FFFFFF" /> : <BookmarkPlus />}
+                  {/* <span>{isFavorited ? "Salvo" : "Favoritar"}</span> */}
                 </Button>
               </div>
             </div>
