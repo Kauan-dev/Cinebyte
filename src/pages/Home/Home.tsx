@@ -35,6 +35,16 @@ export function Home() {
         />
         <MediaSection title="Em breve nos cinemas" data={upcomingMovies} />
 
+        <section>
+          <Container className="m-auto flex max-w-150 flex-col gap-2 py-8 text-center">
+            <q className="text-xl italic md:text-2xl">
+              Por que caímos, Bruce? Para que possamos aprender a nos levantar
+              novamente.
+            </q>
+            <span className="text-lg text-neutral-400">- Batman Begins</span>
+          </Container>
+        </section>
+
         <MediaSection
           title="Filmes populares da semana"
           data={trendingMovies}
