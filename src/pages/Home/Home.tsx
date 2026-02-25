@@ -7,10 +7,9 @@ import { MediaSection } from "../../components/sections/MediaSection";
 export function Home() {
   const {
     nowPlayingMovies,
-    popularSeries,
-    upcomingMovies,
     weekTrendingSeries,
-    popularMovies,
+    upcomingMovies,
+    trendingMovies,
     topRatedSeries,
     topRatedMovies,
   } = useHomeData();
@@ -30,10 +29,16 @@ export function Home() {
 
       <div className="flex flex-col gap-3">
         <MediaSection title="Filmes em cartaz" data={nowPlayingMovies} />
-        <MediaSection title="Series populares da semana" data={popularSeries} />
+        <MediaSection
+          title="Series populares da semana"
+          data={weekTrendingSeries}
+        />
         <MediaSection title="Em breve nos cinemas" data={upcomingMovies} />
-        <MediaSection title="Series em alta" data={weekTrendingSeries} />
-        <MediaSection title="Filmes populares" data={popularMovies} />
+
+        <MediaSection
+          title="Filmes populares da semana"
+          data={trendingMovies}
+        />
         <MediaSection title="Séries mais bem avaliadas" data={topRatedSeries} />
         <MediaSection title="Filmes mais bem avaliados" data={topRatedMovies} />
       </div>

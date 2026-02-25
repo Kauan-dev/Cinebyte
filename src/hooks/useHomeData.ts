@@ -4,10 +4,9 @@ import type { Media } from "@/types/media";
 
 export function useHomeData() {
   const [nowPlayingMovies, setNowPlayingMovies] = useState<Media[]>([]);
-  const [popularSeries, setPopularSeries] = useState<Media[]>([]);
-  const [upcomingMovies, setUpcomingMovies] = useState<Media[]>([]);
   const [weekTrendingSeries, setWeekTrendingSeries] = useState<Media[]>([]);
-  const [popularMovies, setPopularMovies] = useState<Media[]>([]);
+  const [upcomingMovies, setUpcomingMovies] = useState<Media[]>([]);
+  const [trendingMovies, setTrendingMovies] = useState<Media[]>([]);
   const [topRatedSeries, setTopRatedSeries] = useState<Media[]>([]);
   const [topRatedMovies, setTopRatedMovies] = useState<Media[]>([]);
 
@@ -16,27 +15,24 @@ export function useHomeData() {
       try {
         const [
           nowPlayingMoviesResponse,
-          popularSeriesResponse,
-          upcomingMoviesResponse,
           weekTrendingSeriesResponse,
-          popularMoviesResponse,
+          upcomingMoviesResponse,
+          trendingMoviesResponse,
           topRatedSeriesResponse,
           topRatedMoviesResponse,
         ] = await Promise.all([
           fetchTMDB("movie/now_playing", "movie"),
-          fetchTMDB("tv/popular", "tv"),
-          fetchTMDB("movie/upcoming", "movie"),
           fetchTMDB("trending/tv/week", "tv"),
-          fetchTMDB("movie/popular", "movie"),
+          fetchTMDB("movie/upcoming", "movie"),
+          fetchTMDB("trending/movie/week", "movie"),
           fetchTMDB("tv/top_rated", "tv"),
           fetchTMDB("movie/top_rated", "movie"),
         ]);
 
         setNowPlayingMovies(nowPlayingMoviesResponse);
-        setPopularSeries(popularSeriesResponse);
-        setUpcomingMovies(upcomingMoviesResponse);
         setWeekTrendingSeries(weekTrendingSeriesResponse);
-        setPopularMovies(popularMoviesResponse);
+        setUpcomingMovies(upcomingMoviesResponse);
+        setTrendingMovies(trendingMoviesResponse);
         setTopRatedSeries(topRatedSeriesResponse);
         setTopRatedMovies(topRatedMoviesResponse);
       } catch (error) {
@@ -49,10 +45,9 @@ export function useHomeData() {
 
   return {
     nowPlayingMovies,
-    popularSeries,
-    upcomingMovies,
     weekTrendingSeries,
-    popularMovies,
+    upcomingMovies,
+    trendingMovies,
     topRatedSeries,
     topRatedMovies,
   };

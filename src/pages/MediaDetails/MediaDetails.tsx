@@ -115,8 +115,6 @@ export function MediaDetails() {
     ""
   ).split("-")[0];
 
-  console.log(isFavorited);
-
   return (
     <div
       className="-mt-4 bg-cover bg-center bg-no-repeat"
