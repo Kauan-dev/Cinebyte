@@ -161,8 +161,8 @@ export function MediaDetails() {
 
               <div className="font-google flex gap-4">
                 <Button
-                  variant="outline"
                   size={"lg"}
+                  variant={"outline"}
                   onClick={handleWatchTrailer}
                 >
                   <svg
@@ -185,7 +185,6 @@ export function MediaDetails() {
                 </Button>
 
                 <Button
-                  variant={"outline"}
                   onClick={() => {
                     if (isFavorited) {
                       handleRemoveFavorite(
@@ -197,6 +196,7 @@ export function MediaDetails() {
                       handleAddToWatchLater();
                     }
                   }}
+                  variant={"outline"}
                   size={"lg"}
                 >
                   {isFavorited ? <Bookmark fill="#FFFFFF" /> : <BookmarkPlus />}

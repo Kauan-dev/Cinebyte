@@ -67,7 +67,7 @@ export function WatchLater() {
                     media.title ?? media.name ?? "Título indisponível",
                   )
                 }
-                variant={"outline"}
+                variant={"destructive"}
                 size={"icon-sm"}
                 className="absolute top-1.5 right-1.5 z-30 rounded-full opacity-100 transition-opacity duration-200 sm:opacity-0 sm:group-hover:opacity-100"
               >
