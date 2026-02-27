@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Container } from "./Container";
 import logo from "../../assets/images/logo.png";
 import FavoritesIcon from "../../assets/icons/favorites.svg?react";
+import { SearchBar } from "./SearchBar";
 
 export function Header() {
   return (
@@ -10,7 +11,7 @@ export function Header() {
         <div className="flex items-center gap-10">
           <Link to="/" title="Home">
             <img
-              className="h-10 duration-300 ease-in-out hover:scale-105"
+              className="h-10 min-w-20 duration-300 ease-in-out hover:scale-105"
               src={logo}
               alt=""
             />
@@ -26,9 +27,17 @@ export function Header() {
           </div>
         </div>
 
-        <Link to="/watch-later" title="Watch list" className="hidden md:block">
-          <FavoritesIcon className="size-7.5 duration-300 ease-in-out hover:text-[#e6b91e]" />
-        </Link>
+        <div className="flex items-center gap-4">
+          <SearchBar />
+
+          <Link
+            to="/watch-later"
+            title="Watch list"
+            className="hidden md:block"
+          >
+            <FavoritesIcon className="size-7.5 duration-300 ease-in-out hover:text-[#e6b91e]" />
+          </Link>
+        </div>
       </header>
     </Container>
   );
