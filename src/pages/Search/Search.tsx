@@ -24,22 +24,24 @@ export function Search() {
   }, [query]);
 
   return (
-    <Container className="grid grid-cols-2 gap-3 pb-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+    <Container className="grid min-h-screen grid-cols-2 gap-3 pb-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       {data.map((item) => {
-        return (
-          <Card
-            key={item.id}
-            id={item.id}
-            poster_path={item.poster_path}
-            media_type={item.title ? "movie" : "tv"}
-          >
-            <img
-              className="w-44"
-              src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-              alt=""
-            />
-          </Card>
-        );
+        if (item.poster_path) {
+          return (
+            <Card
+              key={item.id}
+              id={item.id}
+              poster_path={item.poster_path}
+              media_type={item.title ? "movie" : "tv"}
+            >
+              <img
+                className="w-44"
+                src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                alt=""
+              />
+            </Card>
+          );
+        }
       })}
     </Container>
   );
