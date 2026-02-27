@@ -17,7 +17,6 @@ export function Search() {
       });
 
       setData(response.data.results);
-      console.log(response.data.results);
     }
 
     loadData();

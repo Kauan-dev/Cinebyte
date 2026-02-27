@@ -8,22 +8,25 @@ export function SearchBar() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
-  function handleSearch() {
+  function handleSearch(e: React.FormEvent) {
+    e.preventDefault();
     if (!search.trim()) return;
+
     navigate(`/search/${search}`);
-    setSearch("");
   }
 
   return (
-    <Field orientation="horizontal">
-      <Input
-        type="search"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="ml-3"
-      />
-      <Button onClick={handleSearch}>Search</Button>
-    </Field>
+    <form onSubmit={handleSearch}>
+      <Field orientation="horizontal">
+        <Input
+          type="search"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="ml-3"
+        />
+        <Button type="submit">Search</Button>
+      </Field>
+    </form>
   );
 }
