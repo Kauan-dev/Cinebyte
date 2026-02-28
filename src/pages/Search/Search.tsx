@@ -32,6 +32,7 @@ export function Search() {
               id={item.id}
               poster_path={item.poster_path}
               media_type={item.title ? "movie" : "tv"}
+              title={item.title ?? item.name}
             >
               <img
                 className="w-44"

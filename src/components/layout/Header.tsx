@@ -3,6 +3,7 @@ import { Container } from "./Container";
 import logo from "../../assets/images/logo.png";
 import FavoritesIcon from "../../assets/icons/favorites.svg?react";
 import { SearchBar } from "./SearchBar";
+import { Button } from "../ui/button";
 
 export function Header() {
   return (
@@ -27,16 +28,18 @@ export function Header() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="ml-8 flex items-center gap-3">
           <SearchBar />
 
-          <Link
-            to="/watch-later"
-            title="Watch list"
-            className="hidden md:block"
+          <Button
+            size={"icon-lg"}
+            variant={"secondary"}
+            className="hidden md:flex"
           >
-            <FavoritesIcon className="size-7.5 duration-300 ease-in-out hover:text-[#e6b91e]" />
-          </Link>
+            <Link to="/watch-later" title="Watch list">
+              <FavoritesIcon className="size-5.5 duration-300 ease-in-out hover:text-[#e6b91e]" />
+            </Link>
+          </Button>
         </div>
       </header>
     </Container>
