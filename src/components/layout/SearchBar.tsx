@@ -27,7 +27,7 @@ export function SearchBar() {
             placeholder="Search..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="ml-3"
+            className="ml-3 h-10"
           />
           <Button type="submit" variant="secondary" size="icon-lg">
             <Search className="size-5" />
@@ -52,6 +52,7 @@ export function SearchBar() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               autoFocus
+              className="h-10"
             />
             <Button type="submit" variant="secondary" size="icon-lg">
               <Search className="size-5" />
