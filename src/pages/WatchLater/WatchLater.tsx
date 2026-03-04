@@ -4,8 +4,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Bookmark } from "lucide-react";
+import { Loading } from "@/components/layout/Loading";
 
 export function WatchLater() {
+  const [loading, setLoading] = useState(true);
   const [favoritesList, setFavoritesList] = useState<WatchListItem[]>([]);
 
   useEffect(() => {
@@ -14,6 +16,7 @@ export function WatchLater() {
     );
 
     setFavoritesList(watchLaterList);
+    setLoading(false);
   }, []);
 
   function handleRemoveFavorite(
@@ -34,6 +37,10 @@ export function WatchLater() {
 
     localStorage.setItem("cinebyte:watchList", JSON.stringify(mediaFilter));
     setFavoritesList(mediaFilter);
+  }
+
+  if (loading) {
+    return <Loading />;
   }
 
   if (favoritesList.length == 0) {

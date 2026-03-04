@@ -4,12 +4,16 @@ import api from "@/services/api";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/card";
 import { SearchX } from "lucide-react";
+import { Loading } from "@/components/layout/Loading";
 
 export function Search() {
+  const [loading, setLoading] = useState(true);
   const { query } = useParams();
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
+
     async function loadData() {
       const response = await api.get("search/multi", {
         params: {
@@ -18,10 +22,15 @@ export function Search() {
       });
 
       setData(response.data.results);
+      setLoading(false);
     }
 
     loadData();
   }, [query]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   if (data.length == 0) {
     return (
