@@ -1,14 +1,20 @@
 import { useMoviesData } from "@/hooks/useMoviesData";
 import { MediaSection } from "../../components/sections/MediaSection";
+import { Loading } from "@/components/layout/Loading";
 
 export function Movies() {
   const {
+    loading,
     trendingMovies,
     nowPlayingMovies,
     upcomingMovies,
     popularMovies,
     topRatedMovies,
   } = useMoviesData();
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="movies-page">

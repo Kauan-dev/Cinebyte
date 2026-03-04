@@ -1,9 +1,14 @@
 import { useTVSeriesData } from "@/hooks/useTVSeriesData";
 import { MediaSection } from "../../components/sections/MediaSection";
+import { Loading } from "@/components/layout/Loading";
 
 export function TVSeries() {
-  const { popularSeries, weekTrendingSeries, topRatedSeries } =
+  const { loading, popularSeries, weekTrendingSeries, topRatedSeries } =
     useTVSeriesData();
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="tvseries-page">

@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import featuredBanner from "../../assets/images/featuredBanner.jpg";
 import { Container } from "@/components/layout/Container";
 import { MediaSection } from "../../components/sections/MediaSection";
+import { Loading } from "@/components/layout/Loading";
 
 export function Home() {
   const {
+    loading,
     nowPlayingMovies,
     weekTrendingSeries,
     upcomingMovies,
@@ -13,6 +15,10 @@ export function Home() {
     topRatedSeries,
     topRatedMovies,
   } = useHomeData();
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="homepage">

@@ -3,6 +3,8 @@ import { fetchTMDB } from "@/utils/fetchTMDB";
 import type { Media } from "@/types/media";
 
 export function useTVSeriesData() {
+  const [loading, setLoading] = useState(true);
+
   const [popularSeries, setPopularSeries] = useState<Media[]>([]);
   const [weekTrendingSeries, setWeekTrendingSeries] = useState<Media[]>([]);
   const [topRatedSeries, setTopRatedSeries] = useState<Media[]>([]);
@@ -25,6 +27,8 @@ export function useTVSeriesData() {
         setTopRatedSeries(topRatedSeriesResponse);
       } catch (error) {
         console.error("Erro ao carregar dados da página Series", error);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -32,6 +36,7 @@ export function useTVSeriesData() {
   }, []);
 
   return {
+    loading,
     popularSeries,
     weekTrendingSeries,
     topRatedSeries,

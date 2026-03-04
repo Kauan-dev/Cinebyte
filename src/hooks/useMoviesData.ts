@@ -3,6 +3,8 @@ import { fetchTMDB } from "@/utils/fetchTMDB";
 import type { Media } from "@/types/media";
 
 export function useMoviesData() {
+  const [loading, setLoading] = useState(true);
+
   const [trendingMovies, setTrendingMovies] = useState<Media[]>([]);
   const [nowPlayingMovies, setNowPlayingMovies] = useState<Media[]>([]);
   const [upcomingMovies, setUpcomingMovies] = useState<Media[]>([]);
@@ -33,6 +35,8 @@ export function useMoviesData() {
         setTopRatedMovies(topRatedMoviesResponse);
       } catch (error) {
         console.error("Erro ao carregar dados da página Filmes", error);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -40,6 +44,7 @@ export function useMoviesData() {
   }, []);
 
   return {
+    loading,
     trendingMovies,
     nowPlayingMovies,
     upcomingMovies,

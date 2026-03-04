@@ -3,6 +3,8 @@ import { fetchTMDB } from "@/utils/fetchTMDB";
 import type { Media } from "@/types/media";
 
 export function useHomeData() {
+  const [loading, setLoading] = useState(true);
+
   const [nowPlayingMovies, setNowPlayingMovies] = useState<Media[]>([]);
   const [weekTrendingSeries, setWeekTrendingSeries] = useState<Media[]>([]);
   const [upcomingMovies, setUpcomingMovies] = useState<Media[]>([]);
@@ -37,6 +39,8 @@ export function useHomeData() {
         setTopRatedMovies(topRatedMoviesResponse);
       } catch (error) {
         console.error("Erro ao carregar dados da Home", error);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -44,6 +48,7 @@ export function useHomeData() {
   }, []);
 
   return {
+    loading,
     nowPlayingMovies,
     weekTrendingSeries,
     upcomingMovies,
