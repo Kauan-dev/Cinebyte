@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Bookmark } from "lucide-react";
 import { Loading } from "@/components/layout/Loading";
 import { useTitle } from "@/hooks/useTitle";
+import { toast } from "sonner";
 
 export function WatchLater() {
   const [loading, setLoading] = useState(true);
@@ -40,6 +41,7 @@ export function WatchLater() {
 
     localStorage.setItem("cinebyte:watchList", JSON.stringify(mediaFilter));
     setFavoritesList(mediaFilter);
+    toast.success("Mídia removida com sucesso!");
   }
 
   if (loading) {

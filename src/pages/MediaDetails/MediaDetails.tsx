@@ -5,6 +5,7 @@ import type { Media } from "@/types/media";
 import logo from "../../assets/images/logo.png";
 import { Button } from "../../components/ui/button";
 import { Bookmark, BookmarkPlus } from "lucide-react";
+import { toast } from "sonner";
 
 type MediaDetails = Media & {
   overview: string;
@@ -78,8 +79,8 @@ export function MediaDetails() {
 
     localStorage.setItem(WATCHLIST_KEY, JSON.stringify(watchList));
 
-    alert("Filme salvo com sucesso!");
     setIsFavorited(true);
+    toast.success("Filme salvo com sucesso!");
   }
 
   function handleRemoveFavorite(
@@ -103,6 +104,7 @@ export function MediaDetails() {
     });
 
     localStorage.setItem("cinebyte:watchList", JSON.stringify(mediaFilter));
+    toast.success("Mídia removida com sucesso!");
   }
 
   if (!movieDetails) {
