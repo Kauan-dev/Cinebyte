@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useHomeData } from "@/hooks/useHomeData";
 import { Link } from "react-router-dom";
 import featuredBanner from "../../assets/images/featuredBanner.jpg";
@@ -6,6 +7,8 @@ import { MediaSection } from "../../components/sections/MediaSection";
 import { Loading } from "@/components/layout/Loading";
 
 export function Home() {
+  useEffect(() => {}, [(document.title = "Cinebyte")]);
+
   const {
     loading,
     nowPlayingMovies,
