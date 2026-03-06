@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Bookmark } from "lucide-react";
 import { Loading } from "@/components/layout/Loading";
+import { useTitle } from "@/hooks/useTitle";
 
 export function WatchLater() {
   const [loading, setLoading] = useState(true);
   const [favoritesList, setFavoritesList] = useState<WatchListItem[]>([]);
+
+  useTitle("Favoritos");
 
   useEffect(() => {
     const watchLaterList: WatchListItem[] = JSON.parse(

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
 import { useMoviesData } from "@/hooks/useMoviesData";
 import { MediaSection } from "../../components/sections/MediaSection";
 import { Loading } from "@/components/layout/Loading";
+import { useTitle } from "@/hooks/useTitle";
 
 export function Movies() {
-  useEffect(() => {}, [(document.title = "Cinebyte | Filmes")]);
+  useTitle("Filmes");
 
   const {
     loading,

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
 import { useTVSeriesData } from "@/hooks/useTVSeriesData";
 import { MediaSection } from "../../components/sections/MediaSection";
 import { Loading } from "@/components/layout/Loading";
+import { useTitle } from "@/hooks/useTitle";
 
 export function TVSeries() {
-  useEffect(() => {}, [(document.title = "Cinebyte | Séries")]);
+  useTitle("Series");
 
   const { loading, popularSeries, weekTrendingSeries, topRatedSeries } =
     useTVSeriesData();

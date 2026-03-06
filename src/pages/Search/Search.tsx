@@ -5,11 +5,14 @@ import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/card";
 import { SearchX } from "lucide-react";
 import { Loading } from "@/components/layout/Loading";
+import { useTitle } from "@/hooks/useTitle";
 
 export function Search() {
   const [loading, setLoading] = useState(true);
   const { query } = useParams();
   const [data, setData] = useState([]);
+
+  useTitle(query ? `Busca: ${query}` : "Busca");
 
   useEffect(() => {
     setLoading(true);

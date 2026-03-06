@@ -1,13 +1,15 @@
-import { useEffect } from "react";
 import { useHomeData } from "@/hooks/useHomeData";
 import { Link } from "react-router-dom";
 import featuredBanner from "../../assets/images/featuredBanner.jpg";
 import { Container } from "@/components/layout/Container";
 import { MediaSection } from "../../components/sections/MediaSection";
 import { Loading } from "@/components/layout/Loading";
+import { useEffect } from "react";
 
 export function Home() {
-  useEffect(() => {}, [(document.title = "Cinebyte")]);
+  useEffect(() => {
+    document.title = "Cinebyte";
+  }, []);
 
   const {
     loading,
