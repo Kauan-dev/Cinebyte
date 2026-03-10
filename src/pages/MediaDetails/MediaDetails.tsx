@@ -125,7 +125,7 @@ export function MediaDetails() {
       }}
     >
       <div className="bg-black/85">
-        <div className="m-auto flex justify-between px-4 py-8 md:h-[calc(100vh-68px)] md:px-6 lg:px-8">
+        <div className="m-auto flex min-h-[calc(100vh-68px)] justify-between px-4 py-8 md:px-6 lg:h-[calc(100vh-68px)] lg:px-8">
           <div className="flex h-fit w-full items-center justify-between">
             <div className="flex flex-col gap-8">
               <h2>{media_type === "movie" ? "FILME" : "SÉRIE"}</h2>
@@ -147,12 +147,6 @@ export function MediaDetails() {
                   </span>
                 </div>
               </div>
-
-              <img
-                className="w-full md:hidden"
-                src={`https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}
-                alt=""
-              />
 
               <p className="max-w-137.5">{movieDetails.overview}</p>
 
