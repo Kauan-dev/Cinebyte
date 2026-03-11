@@ -6,11 +6,12 @@ import { Card } from "@/components/ui/card";
 import { SearchX } from "lucide-react";
 import { Loading } from "@/components/layout/Loading";
 import { useTitle } from "@/hooks/useTitle";
+import type { Media } from "@/types/media";
 
 export function Search() {
   const [loading, setLoading] = useState(true);
   const { query } = useParams();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Media[]>([]);
 
   useTitle(query ? `Busca: ${query}` : "Busca");
 
@@ -57,13 +58,7 @@ export function Search() {
               poster_path={item.poster_path}
               media_type={item.title ? "movie" : "tv"}
               title={item.title ?? item.name}
-            >
-              <img
-                className="w-44"
-                src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                alt=""
-              />
-            </Card>
+            ></Card>
           );
         }
       })}

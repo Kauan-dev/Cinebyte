@@ -118,14 +118,16 @@ export function MediaDetails() {
   ).split("-")[0];
 
   return (
-    <div
-      className="-mt-4 bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
-      }}
-    >
-      <div className="bg-black/85">
-        <div className="m-auto flex min-h-[calc(100vh-68px)] justify-between px-4 py-8 md:px-6 lg:h-[calc(100vh-68px)] lg:px-8">
+    <div className="-mt-4">
+      {/* MOBILE */}
+      <div className="md:hidden">
+        <img
+          className="w-full mask-[linear-gradient(to_bottom,black_65%,transparent)]"
+          src={`https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}
+          alt=""
+        />
+
+        <div className="m-auto flex justify-between px-4 py-8">
           <div className="flex h-fit w-full items-center justify-between">
             <div className="flex flex-col gap-8">
               <h2>{media_type === "movie" ? "FILME" : "SÉRIE"}</h2>
@@ -135,15 +137,8 @@ export function MediaDetails() {
                   <h1 className="flex items-end gap-2 text-3xl">
                     {movieDetails.title ?? movieDetails.name}
                   </h1>
-
                   <span className="mb-0.75 text-[15px] text-neutral-500">
-                    {
-                      (
-                        movieDetails.release_date ??
-                        movieDetails.first_air_date ??
-                        ""
-                      ).split("-")[0]
-                    }
+                    {releaseYear}
                   </span>
                 </div>
               </div>
@@ -168,9 +163,9 @@ export function MediaDetails() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className="lucide lucide-tv-minimal-play-icon lucide-tv-minimal-play"
                   >
                     <path d="M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z" />
@@ -196,17 +191,101 @@ export function MediaDetails() {
                   size={"lg"}
                 >
                   {isFavorited ? <Bookmark fill="#FFFFFF" /> : <BookmarkPlus />}
-                  {/* <span>{isFavorited ? "Salvo" : "Favoritar"}</span> */}
                 </Button>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div className="ml-50 hidden md:block">
-              <img
-                className="w-74"
-                src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`}
-                alt=""
-              />
+      {/* PC */}
+      <div
+        className="hidden bg-cover bg-center bg-no-repeat md:block"
+        style={{
+          backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
+        }}
+      >
+        <div className="bg-black/85">
+          <div className="m-auto flex min-h-[calc(100vh-68px)] items-center justify-between px-4 py-8 md:px-6 lg:h-[calc(100vh-68px)] lg:px-8">
+            <div className="flex h-fit w-full items-center justify-between">
+              <div className="flex flex-col gap-8">
+                <h2>{media_type === "movie" ? "FILME" : "SÉRIE"}</h2>
+
+                <div className="flex items-baseline gap-2.5">
+                  <div>
+                    <h1 className="flex items-end gap-2 text-3xl">
+                      {movieDetails.title ?? movieDetails.name}
+                    </h1>
+
+                    <span className="mb-0.75 text-[15px] text-neutral-500">
+                      {releaseYear}
+                    </span>
+                  </div>
+                </div>
+
+                <p className="max-w-137.5">{movieDetails.overview}</p>
+
+                <div className="flex items-center gap-4 text-lg">
+                  <img src={logo} alt="" className="w-15" />
+                  <span>{movieDetails.vote_average.toFixed(1)}</span>
+                </div>
+
+                <div className="font-google flex gap-4">
+                  <Button
+                    size={"lg"}
+                    variant={"outline"}
+                    onClick={handleWatchTrailer}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-tv-minimal-play-icon lucide-tv-minimal-play"
+                    >
+                      <path d="M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z" />
+                      <path d="M7 21h10" />
+                      <rect width="20" height="14" x="2" y="3" rx="2" />
+                    </svg>
+                    <span>Assistir trailer</span>
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      if (isFavorited) {
+                        handleRemoveFavorite(
+                          movieDetails.id,
+                          movieDetails.title ?? movieDetails.name ?? "",
+                        );
+                        setIsFavorited(false);
+                      } else {
+                        handleAddToWatchLater();
+                      }
+                    }}
+                    variant={"outline"}
+                    size={"lg"}
+                  >
+                    {isFavorited ? (
+                      <Bookmark fill="#FFFFFF" />
+                    ) : (
+                      <BookmarkPlus />
+                    )}
+                  </Button>
+                </div>
+              </div>
+
+              <div className="ml-50">
+                <img
+                  className="w-74"
+                  src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`}
+                  alt=""
+                />
+              </div>
             </div>
           </div>
         </div>
