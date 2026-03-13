@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export function MobileNavbar() {
   return (
-    <div className="fixed bottom-0 z-99 flex h-17 w-full items-center justify-center gap-14 bg-black md:hidden [@media(max-width:360px)]:gap-10">
+    <div className="fixed bottom-0 z-99 flex h-16 w-full items-center justify-center gap-14 bg-black md:hidden [@media(max-width:360px)]:gap-10">
       <Link
         className="font-google flex flex-col items-center gap-1 text-[10px] font-semibold"
         to="/"
