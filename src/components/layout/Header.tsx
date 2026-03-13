@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Container } from "./Container";
 import logo from "../../assets/images/logo.png";
-import FavoritesIcon from "../../assets/icons/favorites.svg?react";
+import { Bookmark } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { Button } from "../ui/button";
 
@@ -37,7 +37,7 @@ export function Header() {
             className="hidden md:flex"
           >
             <Link to="/watch-later" title="Watch list">
-              <FavoritesIcon className="size-5.5 duration-300 ease-in-out hover:text-[#e6b91e]" />
+              <Bookmark className="size-5.5 duration-300 ease-in-out hover:text-[#e6b91e]" />
             </Link>
           </Button>
         </div>
