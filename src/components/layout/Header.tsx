@@ -4,13 +4,14 @@ import { Bookmark } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { Button } from "../ui/button";
 import { NavLink } from "react-router-dom";
+import { getNavIconClass } from "@/utils/navIconClass";
 
 export function Header() {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `flex h-full items-center text-[15px] tracking-wide ${
       isActive
         ? "text-yellow-400 border-b-2 border-b-amber-400"
-        : "text-gray-400"
+        : "text-neutral-200"
     }`;
 
   return (
@@ -45,7 +46,14 @@ export function Header() {
             asChild
           >
             <NavLink to="/watch-later" title="Watch list">
-              <Bookmark className="size-6 duration-300 ease-in-out hover:text-[#e6b91e]" />
+              {({ isActive }) => (
+                <Bookmark
+                  className={getNavIconClass(
+                    isActive,
+                    "size-6 duration-300 ease-in-out hover:text-[#e6b91e]",
+                  )}
+                />
+              )}
             </NavLink>
           </Button>
         </div>
