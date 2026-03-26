@@ -130,16 +130,13 @@ export function MediaDetails() {
         <div className="m-auto flex justify-between px-4 py-8">
           <div className="flex h-fit w-full items-center justify-between">
             <div className="flex flex-col gap-8">
-              <h2>{media_type === "movie" ? "FILME" : "SÉRIE"}</h2>
-
-              <div className="flex items-baseline gap-2.5">
-                <div>
-                  <h1 className="flex items-end gap-2 text-3xl">
-                    {movieDetails.title ?? movieDetails.name}
-                  </h1>
-                  <span className="mb-0.75 text-[15px] text-neutral-500">
-                    {releaseYear}
-                  </span>
+              <div>
+                <h1 className="flex items-end gap-2 text-3xl">
+                  {movieDetails.title ?? movieDetails.name}
+                </h1>
+                <div className="mt-1 flex gap-1 text-[15px] text-neutral-500">
+                  <span>{media_type === "movie" ? "FILME" : "SÉRIE"}</span>
+                  <span>- {releaseYear}</span>
                 </div>
               </div>
 
