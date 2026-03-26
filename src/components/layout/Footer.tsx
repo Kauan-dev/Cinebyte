@@ -4,9 +4,8 @@ import { Linkedin, Github, Instagram } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-black sm:mb-0">
-      <Container className="flex h-15 items-center justify-between">
-        <h3 className="font-google text-[18px]">@Kauan-dev</h3>
+    <footer className="mt-2 border-t-2 border-neutral-500">
+      <Container className="flex h-15 items-center justify-center">
         <div className="flex gap-4">
           <Link to="/">
             <Linkedin />
