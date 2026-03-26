@@ -8,10 +8,10 @@ import { getNavIconClass } from "@/utils/navIconClass";
 
 export function Header() {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `flex h-full items-center text-[15px] tracking-wide ${
+    `flex h-full items-center text-[15px] tracking-wide border-b-2 ${
       isActive
-        ? "text-yellow-400 border-b-2 border-b-amber-400"
-        : "text-neutral-200"
+        ? "text-yellow-400 border-b-amber-400"
+        : "text-neutral-200 border-b-transparent"
     }`;
 
   return (
