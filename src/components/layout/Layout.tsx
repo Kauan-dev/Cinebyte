@@ -9,7 +9,7 @@ export function Layout() {
     <div className="page">
       <Header />
 
-      <main className="mx-auto mb-17 md:mb-0">
+      <main className="mx-auto mb-16 flex min-h-screen flex-col justify-between md:mb-0">
         <Outlet />
         <Footer />
       </main>
