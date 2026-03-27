@@ -1,7 +1,6 @@
 import { Header } from "./Header";
 import { Outlet } from "react-router";
 import { MobileNavbar } from "./MobileNavbar";
-import { Footer } from "./Footer";
 import { Toaster } from "@/components/ui/sonner";
 
 export function Layout() {
@@ -11,7 +10,6 @@ export function Layout() {
 
       <main className="mx-auto mb-16 flex min-h-screen flex-col justify-between md:mb-0">
         <Outlet />
-        <Footer />
       </main>
 
       <Toaster
