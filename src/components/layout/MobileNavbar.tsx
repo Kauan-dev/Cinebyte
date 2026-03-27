@@ -1,5 +1,11 @@
 import { NavLink } from "react-router-dom";
-import { House, Clapperboard, LucideTvMinimal, Bookmark } from "lucide-react";
+import {
+  House,
+  Clapperboard,
+  LucideTvMinimal,
+  Bookmark,
+  LucideInfo,
+} from "lucide-react";
 import { getNavIconClass } from "@/utils/navIconClass";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -9,7 +15,25 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 export function MobileNavbar() {
   return (
-    <div className="fixed bottom-0 z-99 flex h-16 w-full items-center justify-center gap-14 bg-black md:hidden [@media(max-width:360px)]:gap-10">
+    <div className="fixed bottom-0 z-99 flex h-16 w-full items-center justify-center gap-10 bg-black md:hidden [@media(max-width:360px)]:gap-7">
+      <NavLink className={navLinkClass} to="/watch-later">
+        {({ isActive }) => (
+          <>
+            <Bookmark className={getNavIconClass(isActive)} />
+            <span>SALVOS</span>
+          </>
+        )}
+      </NavLink>
+
+      <NavLink className={navLinkClass} to="/tv-series">
+        {({ isActive }) => (
+          <>
+            <LucideTvMinimal className={getNavIconClass(isActive)} />
+            <span>SÉRIES</span>
+          </>
+        )}
+      </NavLink>
+
       <NavLink className={navLinkClass} to="/" end>
         {({ isActive }) => (
           <>
@@ -28,20 +52,11 @@ export function MobileNavbar() {
         )}
       </NavLink>
 
-      <NavLink className={navLinkClass} to="/tv-series">
+      <NavLink className={navLinkClass} to="/about">
         {({ isActive }) => (
           <>
-            <LucideTvMinimal className={getNavIconClass(isActive)} />
-            <span>SÉRIES</span>
-          </>
-        )}
-      </NavLink>
-
-      <NavLink className={navLinkClass} to="/watch-later">
-        {({ isActive }) => (
-          <>
-            <Bookmark className={getNavIconClass(isActive)} />
-            <span>FAVORITOS</span>
+            <LucideInfo className={getNavIconClass(isActive)} />
+            <span>SOBRE</span>
           </>
         )}
       </NavLink>

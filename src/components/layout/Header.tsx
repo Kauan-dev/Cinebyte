@@ -33,6 +33,9 @@ export function Header() {
             <NavLink className={navLinkClass} to="/tv-series">
               SÉRIES
             </NavLink>
+            <NavLink className={navLinkClass} to="/about">
+              SOBRE
+            </NavLink>
           </div>
         </div>
 
