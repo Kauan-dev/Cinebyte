@@ -7,6 +7,7 @@ import { Movies } from "@/pages/Movies/Movies";
 import { TVSeries } from "@/pages/TVSeries/TVSeries";
 import { MediaDetails } from "../pages/MediaDetails/MediaDetails";
 import { WatchLater } from "../pages/WatchLater/WatchLater";
+import { About } from "@/pages/About/About";
 import { Search } from "@/pages/Search/Search";
 
 import { NotFound } from "../pages/NotFound";
@@ -20,6 +21,7 @@ export function AppRoutes() {
         <Route path="/tv-series" element={<TVSeries />} />
         <Route path=":media_type/:id" element={<MediaDetails />} />
         <Route path="/watch-later" element={<WatchLater />} />
+        <Route path="/about" element={<About />} />
         <Route path="/search/:query" element={<Search />} />
       </Route>
 
