@@ -16,24 +16,6 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 export function MobileNavbar() {
   return (
     <div className="fixed bottom-0 z-99 flex h-16 w-full items-center justify-center gap-10 bg-black md:hidden [@media(max-width:360px)]:gap-7">
-      <NavLink className={navLinkClass} to="/watch-later">
-        {({ isActive }) => (
-          <>
-            <Bookmark className={getNavIconClass(isActive)} />
-            <span>SALVOS</span>
-          </>
-        )}
-      </NavLink>
-
-      <NavLink className={navLinkClass} to="/tv-series">
-        {({ isActive }) => (
-          <>
-            <LucideTvMinimal className={getNavIconClass(isActive)} />
-            <span>SÉRIES</span>
-          </>
-        )}
-      </NavLink>
-
       <NavLink className={navLinkClass} to="/" end>
         {({ isActive }) => (
           <>
@@ -48,6 +30,24 @@ export function MobileNavbar() {
           <>
             <Clapperboard className={getNavIconClass(isActive)} />
             <span>FILMES</span>
+          </>
+        )}
+      </NavLink>
+
+      <NavLink className={navLinkClass} to="/tv-series">
+        {({ isActive }) => (
+          <>
+            <LucideTvMinimal className={getNavIconClass(isActive)} />
+            <span>SÉRIES</span>
+          </>
+        )}
+      </NavLink>
+
+      <NavLink className={navLinkClass} to="/watch-later">
+        {({ isActive }) => (
+          <>
+            <Bookmark className={getNavIconClass(isActive)} />
+            <span>SALVOS</span>
           </>
         )}
       </NavLink>
