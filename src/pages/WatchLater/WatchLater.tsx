@@ -7,6 +7,7 @@ import { Bookmark } from "lucide-react";
 import { Loading } from "@/components/layout/Loading";
 import { useTitle } from "@/hooks/useTitle";
 import { toast } from "sonner";
+import { LucideX } from "lucide-react";
 
 export function WatchLater() {
   const [loading, setLoading] = useState(true);
@@ -83,21 +84,7 @@ export function WatchLater() {
                 size={"icon-sm"}
                 className="absolute top-1.5 right-1.5 z-30 rounded-full opacity-100 transition-opacity duration-200 sm:opacity-0 sm:group-hover:opacity-100"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="lucide lucide-x-icon lucide-x"
-                >
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
+                <LucideX />
               </Button>
             </article>
           );
