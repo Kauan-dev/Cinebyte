@@ -6,6 +6,7 @@ import logo from "../../assets/images/logo.png";
 import { Button } from "../../components/ui/button";
 import { Bookmark, BookmarkPlus } from "lucide-react";
 import { toast } from "sonner";
+import { MonitorPlay } from "lucide-react";
 
 type MediaDetails = Media & {
   overview: string;
@@ -152,24 +153,10 @@ export function MediaDetails() {
                   size={"lg"}
                   variant={"outline"}
                   onClick={handleWatchTrailer}
+                  className="flex gap-3"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-tv-minimal-play-icon lucide-tv-minimal-play"
-                  >
-                    <path d="M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z" />
-                    <path d="M7 21h10" />
-                    <rect width="20" height="14" x="2" y="3" rx="2" />
-                  </svg>
-                  <span>Assistir trailer</span>
+                  <MonitorPlay className="size-5" />
+                  <span className="text-[15px]">Assistir trailer</span>
                 </Button>
 
                 <Button
@@ -185,9 +172,13 @@ export function MediaDetails() {
                     }
                   }}
                   variant={"outline"}
-                  size={"lg"}
+                  size={"icon-lg"}
                 >
-                  {isFavorited ? <Bookmark fill="#FFFFFF" /> : <BookmarkPlus />}
+                  {isFavorited ? (
+                    <Bookmark fill="#FFFFFF" className="size-5" />
+                  ) : (
+                    <BookmarkPlus className="size-5" />
+                  )}
                 </Button>
               </div>
             </div>
@@ -232,23 +223,9 @@ export function MediaDetails() {
                     size={"lg"}
                     variant={"outline"}
                     onClick={handleWatchTrailer}
+                    className="flex gap-3"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-tv-minimal-play-icon lucide-tv-minimal-play"
-                    >
-                      <path d="M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z" />
-                      <path d="M7 21h10" />
-                      <rect width="20" height="14" x="2" y="3" rx="2" />
-                    </svg>
+                    <MonitorPlay className="size-5.5" />
                     <span>Assistir trailer</span>
                   </Button>
 
@@ -265,12 +242,12 @@ export function MediaDetails() {
                       }
                     }}
                     variant={"outline"}
-                    size={"lg"}
+                    size={"icon-lg"}
                   >
                     {isFavorited ? (
-                      <Bookmark fill="#FFFFFF" />
+                      <Bookmark fill="#FFFFFF" className="size-4.5" />
                     ) : (
-                      <BookmarkPlus />
+                      <BookmarkPlus className="size-4.5" />
                     )}
                   </Button>
                 </div>
