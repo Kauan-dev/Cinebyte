@@ -67,7 +67,7 @@ export function MediaDetails() {
     );
 
     if (hasMovie) {
-      alert("Você já possui esse filme salvo!");
+      alert("Você já possui essa mídia salva!");
       return;
     }
 
@@ -81,7 +81,7 @@ export function MediaDetails() {
     localStorage.setItem(WATCHLIST_KEY, JSON.stringify(watchList));
 
     setIsFavorited(true);
-    toast.success("Filme salvo com sucesso!");
+    toast.success("Mídia salva com sucesso!");
   }
 
   function handleRemoveFavorite(

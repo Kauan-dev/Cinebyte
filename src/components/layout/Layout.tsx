@@ -19,6 +19,7 @@ export function Layout() {
         toastOptions={{
           style: {
             marginTop: "3.8rem",
+            fontSize: "1rem",
           },
           duration: 2500,
         }}
