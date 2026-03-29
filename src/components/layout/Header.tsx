@@ -4,7 +4,6 @@ import { Bookmark } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { Button } from "../ui/button";
 import { NavLink } from "react-router-dom";
-import { getNavIconClass } from "@/utils/navIconClass";
 
 export function Header() {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -13,6 +12,11 @@ export function Header() {
         ? "text-yellow-400 border-b-amber-400"
         : "text-neutral-200 border-b-transparent"
     }`;
+
+  const navIconClass = (isActive: boolean, baseClass = "") =>
+    [baseClass, isActive ? "stroke-amber-400 stroke-2" : ""]
+      .filter(Boolean)
+      .join(" ");
 
   return (
     <Container className="font-google sticky top-0 z-100 mb-4 flex h-16 items-center justify-center bg-black/75 font-semibold backdrop-blur-md">
@@ -51,9 +55,9 @@ export function Header() {
             <NavLink to="/watch-later" title="Watch list">
               {({ isActive }) => (
                 <Bookmark
-                  className={getNavIconClass(
+                  className={navIconClass(
                     isActive,
-                    "size-6 duration-300 ease-in-out hover:text-[#e6b91e]",
+                    "size-6 hover:text-[#e6b91e]",
                   )}
                 />
               )}
