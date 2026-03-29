@@ -6,12 +6,16 @@ import {
   Bookmark,
   LucideInfo,
 } from "lucide-react";
-import { getNavIconClass } from "@/utils/navIconClass";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `font-google flex flex-col items-center gap-1 text-[10px] font-semibold ${
-    isActive ? "text-neutral-50" : "text-gray-400"
+    isActive ? "text-amber-400" : "text-gray-400"
   }`;
+
+const navIconClass = (isActive: boolean, baseClass = "") =>
+  [baseClass, isActive ? "stroke-amber-400 stroke-2" : ""]
+    .filter(Boolean)
+    .join(" ");
 
 export function MobileNavbar() {
   return (
@@ -19,7 +23,7 @@ export function MobileNavbar() {
       <NavLink className={navLinkClass} to="/" end>
         {({ isActive }) => (
           <>
-            <House className={getNavIconClass(isActive)} />
+            <House className={navIconClass(isActive)} />
             <span>INICIO</span>
           </>
         )}
@@ -28,7 +32,7 @@ export function MobileNavbar() {
       <NavLink className={navLinkClass} to="/movies">
         {({ isActive }) => (
           <>
-            <Clapperboard className={getNavIconClass(isActive)} />
+            <Clapperboard className={navIconClass(isActive)} />
             <span>FILMES</span>
           </>
         )}
@@ -37,7 +41,7 @@ export function MobileNavbar() {
       <NavLink className={navLinkClass} to="/tv-series">
         {({ isActive }) => (
           <>
-            <LucideTvMinimal className={getNavIconClass(isActive)} />
+            <LucideTvMinimal className={navIconClass(isActive)} />
             <span>SÉRIES</span>
           </>
         )}
@@ -46,7 +50,7 @@ export function MobileNavbar() {
       <NavLink className={navLinkClass} to="/watch-later">
         {({ isActive }) => (
           <>
-            <Bookmark className={getNavIconClass(isActive)} />
+            <Bookmark className={navIconClass(isActive)} />
             <span>SALVOS</span>
           </>
         )}
@@ -55,7 +59,7 @@ export function MobileNavbar() {
       <NavLink className={navLinkClass} to="/about">
         {({ isActive }) => (
           <>
-            <LucideInfo className={getNavIconClass(isActive)} />
+            <LucideInfo className={navIconClass(isActive)} />
             <span>SOBRE</span>
           </>
         )}
