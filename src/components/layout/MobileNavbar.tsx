@@ -8,12 +8,14 @@ import {
 } from "lucide-react";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `font-google flex flex-col items-center gap-1 text-[10px] font-semibold ${
-    isActive ? "text-amber-400" : "text-gray-400"
+  `font-google flex flex-col items-center border-t-3  py-[10px] gap-1 text-[10px] font-semibold ${
+    isActive
+      ? "text-amber-400 border-amber-400 py-[9px]"
+      : "text-gray-400 border-t-transparent"
   }`;
 
 const navIconClass = (isActive: boolean, baseClass = "") =>
-  [baseClass, isActive ? "stroke-amber-400 stroke-2" : ""]
+  [baseClass, isActive ? "stroke-amber-400 stroke-2 " : ""]
     .filter(Boolean)
     .join(" ");
 
