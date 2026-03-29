@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Field } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 
 export function SearchBar() {
   const [search, setSearch] = useState("");
@@ -17,18 +20,17 @@ export function SearchBar() {
 
   return (
     <form onSubmit={handleSearch}>
-      <Field orientation="horizontal">
-        <Input
+      <InputGroup className="h-10">
+        <InputGroupInput
           type="search"
-          placeholder="Search..."
+          placeholder="Buscar..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="ml-3 h-10"
         />
-        <Button type="submit" variant="secondary" size="icon-lg">
-          <Search className="size-5" />
-        </Button>
-      </Field>
+        <InputGroupAddon>
+          <Search />
+        </InputGroupAddon>
+      </InputGroup>
     </form>
   );
 }
