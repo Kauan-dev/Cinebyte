@@ -48,18 +48,24 @@ export function Header() {
 
           <Button
             size={"icon-lg"}
-            variant={"secondary"}
+            variant={"outline"}
             className="hidden md:flex"
             asChild
           >
             <NavLink to="/watch-later" title="Watch list">
               {({ isActive }) => (
-                <Bookmark
-                  className={navIconClass(
-                    isActive,
-                    "size-6 hover:text-[#e6b91e]",
-                  )}
-                />
+                <Button
+                  size={"icon-lg"}
+                  variant={"secondary"}
+                  className={`hidden bg-transparent hover:bg-transparent! md:flex ${isActive ? "border border-amber-400" : "border border-transparent"}`}
+                >
+                  <Bookmark
+                    className={navIconClass(
+                      isActive,
+                      "size-6 duration-300 ease-in-out hover:text-[#e6b91e]",
+                    )}
+                  />
+                </Button>
               )}
             </NavLink>
           </Button>

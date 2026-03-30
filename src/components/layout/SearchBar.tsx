@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
-
 import {
   InputGroup,
   InputGroupAddon,
@@ -20,7 +19,7 @@ export function SearchBar() {
 
   return (
     <form onSubmit={handleSearch}>
-      <InputGroup className="h-10">
+      <InputGroup className="h-10 bg-transparent!">
         <InputGroupInput
           type="search"
           placeholder="Buscar..."
