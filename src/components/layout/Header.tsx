@@ -22,7 +22,7 @@ export function Header() {
       <header className="flex h-full w-full items-center justify-between">
         <div className="flex h-full items-center gap-10">
           <NavLink to="/" title="Home" end>
-            <div className="text-[28px] md:mb-1">
+            <div className="text-[27px] font-bold md:mb-1">
               <span>Cine</span>
               <span className="text-amber-400">byte</span>
             </div>
@@ -41,7 +41,7 @@ export function Header() {
           </div>
         </div>
 
-        <div className="ml-4 flex items-center gap-3">
+        <div className="ml-5 flex items-center gap-3">
           <SearchBar />
 
           <Button

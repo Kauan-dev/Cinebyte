@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import type { Media } from "@/types/media";
-import logo from "../../assets/images/logo.png";
+import imdbLogo from "../../assets/images/imdbLogo.png";
 import { Button } from "../../components/ui/button";
 import { Bookmark, BookmarkPlus } from "lucide-react";
 import { toast } from "sonner";
@@ -144,7 +144,7 @@ export function MediaDetails() {
               <p className="max-w-137.5">{movieDetails.overview}</p>
 
               <div className="flex items-center gap-4 text-lg">
-                <img src={logo} alt="" className="w-15" />
+                <img src={imdbLogo} alt="" className="w-15" />
                 <span>{movieDetails.vote_average.toFixed(1)}</span>
               </div>
 
@@ -214,7 +214,7 @@ export function MediaDetails() {
                 <p className="max-w-137.5">{movieDetails.overview}</p>
 
                 <div className="flex items-center gap-4 text-lg">
-                  <img src={logo} alt="" className="w-15" />
+                  <img src={imdbLogo} alt="" className="w-15" />
                   <span>{movieDetails.vote_average.toFixed(1)}</span>
                 </div>
 
