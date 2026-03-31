@@ -61,35 +61,40 @@ export function WatchLater() {
   }
 
   return (
-    <Container>
-      <div className="grid grid-cols-2 gap-3 pb-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        {favoritesList.map((media) => {
-          return (
-            <article key={media.id} className="group relative w-full">
-              <Card
-                id={media.id}
-                poster_path={media.poster_path}
-                name={media.name}
-                title={media.title}
-                media_type={media.media_type}
-              />
-              <Button
-                onClick={() =>
-                  handleRemoveFavorite(
-                    media.id,
-                    media.title ?? media.name ?? "Título indisponível",
-                  )
-                }
-                variant={"destructive"}
-                size={"icon-sm"}
-                className="absolute top-1.5 right-1.5 z-30 rounded-full opacity-0 transition-opacity duration-200 sm:group-hover:opacity-100"
-              >
-                <LucideX />
-              </Button>
-            </article>
-          );
-        })}
-      </div>
-    </Container>
+    <div className="mt-3">
+      <h3 className="mb-3 px-4 text-[24px] font-semibold tracking-wide md:px-6 md:text-[26px] lg:px-8">
+        Favoritos
+      </h3>
+      <Container>
+        <div className="grid grid-cols-2 gap-3 pb-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          {favoritesList.map((media) => {
+            return (
+              <article key={media.id} className="group relative w-full">
+                <Card
+                  id={media.id}
+                  poster_path={media.poster_path}
+                  name={media.name}
+                  title={media.title}
+                  media_type={media.media_type}
+                />
+                <Button
+                  onClick={() =>
+                    handleRemoveFavorite(
+                      media.id,
+                      media.title ?? media.name ?? "Título indisponível",
+                    )
+                  }
+                  variant={"destructive"}
+                  size={"icon-sm"}
+                  className="absolute top-1.5 right-1.5 z-30 rounded-full opacity-0 transition-opacity duration-200 sm:group-hover:opacity-100"
+                >
+                  <LucideX />
+                </Button>
+              </article>
+            );
+          })}
+        </div>
+      </Container>
+    </div>
   );
 }
