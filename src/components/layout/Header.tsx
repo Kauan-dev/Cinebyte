@@ -1,5 +1,4 @@
 import { Container } from "./Container";
-import logo from "../../assets/images/logo.png";
 import { Bookmark } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { Button } from "../ui/button";
@@ -23,11 +22,10 @@ export function Header() {
       <header className="flex h-full w-full items-center justify-between">
         <div className="flex h-full items-center gap-10">
           <NavLink to="/" title="Home" end>
-            <img
-              className="h-10 min-w-20 duration-300 ease-in-out hover:scale-105"
-              src={logo}
-              alt=""
-            />
+            <div className="text-[28px] md:mb-1">
+              <span>Cine</span>
+              <span className="text-amber-400">byte</span>
+            </div>
           </NavLink>
 
           <div className="hidden h-full gap-8 md:flex">
@@ -43,7 +41,7 @@ export function Header() {
           </div>
         </div>
 
-        <div className="ml-8 flex items-center gap-3">
+        <div className="ml-4 flex items-center gap-3">
           <SearchBar />
 
           <Button
