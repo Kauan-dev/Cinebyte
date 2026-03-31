@@ -1,42 +1,41 @@
 import { Link } from "react-router-dom";
 import { Container } from "@/components/layout/Container";
 import { Github } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export function About() {
   return (
-    <Container className="mt-10 flex flex-col gap-8">
+    <Container className="mt-3 flex flex-col gap-8">
       <div className="flex flex-col gap-8">
-        <h1 className="text-3xl font-bold">Sobre o Cinebyte</h1>
-        <div className="flex max-w-150 flex-col gap-6">
+        <h1 className="text-[26px] font-bold">Sobre o Cinebyte</h1>
+        <div className="flex max-w-180 flex-col gap-5">
           <span>
-            O Cinebyte é um projeto front-end de navegação e exploração de
-            filmes e séries, com listagens, páginas de detalhes e gerenciamento
-            de favoritos, inspirado no IMDb.
+            O Cinebyte é um projeto front-end que desenvolvi com foco em
+            aprender e praticar desenvolvimento web. A proposta foi criar uma
+            aplicação inspirada no IMDb, onde é possível explorar e pesquisar
+            filmes e séries, visualizar detalhes e salvar favoritos.
           </span>
 
           <span>
-            Foi construído utilizando React, TypeScript, Tailwind e a API do
-            TMDB.
+            A aplicação foi feita com React, TypeScript e Tailwind CSS,
+            consumindo dados da API do TMDB. É uma SPA (Single Page
+            Application), o que permite uma navegação mais fluida, sem
+            recarregamento de página, além de ser responsiva, funcionando bem
+            tanto no celular quanto no desktop.
           </span>
 
           <span>
-            Seu propósito é apenas estudo e prática de desenvolvimento web, sem
-            fins comerciais.
+            No geral, é um projeto voltado totalmente para estudo, sem fins
+            comerciais.
           </span>
         </div>
       </div>
-      <div className="font-google flex items-center gap-2">
-        <Link to="https://github.com/Kauan-dev/Cinebyte" target="blank">
-          <Button
-            size={"icon-lg"}
-            className="h-12 w-12 rounded-full"
-            variant={"secondary"}
-          >
-            <Github className="size-6" />
-          </Button>
-        </Link>
-        <Link to="https://github.com/Kauan-dev/Cinebyte" target="blank">
+      <div className="font-google text-xl font-semibold">
+        <Link
+          to="https://github.com/Kauan-dev"
+          target="blank"
+          className="flex items-center gap-2"
+        >
+          <Github className="size-7" />
           <span>@Kauan-dev</span>
         </Link>
       </div>

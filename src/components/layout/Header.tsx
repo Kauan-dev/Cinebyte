@@ -22,7 +22,7 @@ export function Header() {
       <header className="flex h-full w-full items-center justify-between">
         <div className="flex h-full items-center gap-10">
           <NavLink to="/" title="Home" end>
-            <div className="text-[27px] font-bold md:mb-1">
+            <div className="text-[27px] font-bold duration-300 ease-in-out hover:scale-105 md:mb-1">
               <span>Cine</span>
               <span className="text-amber-400">byte</span>
             </div>
