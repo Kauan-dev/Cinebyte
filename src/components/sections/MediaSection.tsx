@@ -18,7 +18,7 @@ export function MediaSection({ title, data }: MediaSectionProps) {
 
   return (
     <section className="overflow-hidden py-3">
-      <h3 className="mb-3 px-4 text-[26px] font-semibold tracking-wide md:px-6 lg:px-8">
+      <h3 className="mb-3 px-4 text-[24px] font-semibold tracking-wide md:px-6 md:text-[26px] lg:px-8">
         {title}
       </h3>
 
