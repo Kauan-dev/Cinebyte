@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 export function Layout() {
   return (
-    <div className="page">
+    <div className="page m-auto max-w-400">
       <Header />
 
       <main className="mx-auto mb-16 flex flex-col justify-between md:mb-0">
