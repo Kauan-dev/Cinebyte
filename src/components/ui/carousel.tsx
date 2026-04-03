@@ -157,7 +157,7 @@ function CarouselPrevious({
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
   const [isDelayedDisabled, setIsDelayedDisabled] = React.useState(true);
   const [isButtonHovered, setIsButtonHovered] = React.useState(false);
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   React.useEffect(() => {
     if (canScrollPrev) {
@@ -205,7 +205,7 @@ function CarouselNext({
   const { orientation, scrollNext, canScrollNext } = useCarousel();
   const [isDelayedDisabled, setIsDelayedDisabled] = React.useState(true);
   const [isButtonHovered, setIsButtonHovered] = React.useState(false);
-  const timeoutRef = React.useRef<NodeJS.Timeout>();
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   React.useEffect(() => {
     if (canScrollNext) {
