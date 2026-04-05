@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { Container } from "@/components/layout/Container";
 import { Github } from "lucide-react";
+import { useTitle } from "@/hooks/useTitle";
 
 export function About() {
+  useTitle("SOBRE");
+
   return (
     <Container className="mt-3 flex flex-col gap-8">
       <div className="flex flex-col gap-8">

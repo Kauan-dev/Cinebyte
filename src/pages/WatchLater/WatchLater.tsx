@@ -13,7 +13,7 @@ export function WatchLater() {
   const [loading, setLoading] = useState(true);
   const [favoritesList, setFavoritesList] = useState<WatchListItem[]>([]);
 
-  useTitle("Favoritos");
+  useTitle("FAVORITOS");
 
   useEffect(() => {
     const watchLaterList: WatchListItem[] = JSON.parse(

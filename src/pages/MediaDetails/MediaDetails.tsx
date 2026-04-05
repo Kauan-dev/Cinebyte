@@ -7,6 +7,7 @@ import { Button } from "../../components/ui/button";
 import { Bookmark, BookmarkPlus } from "lucide-react";
 import { toast } from "sonner";
 import { MonitorPlay } from "lucide-react";
+import { useTitle } from "@/hooks/useTitle";
 
 type MediaDetails = Media & {
   overview: string;
@@ -29,6 +30,8 @@ export function MediaDetails() {
   const { media_type, id } = useParams();
   const [movieDetails, setMovieDetails] = useState<MediaDetails | null>(null);
   const [isFavorited, setIsFavorited] = useState(false);
+
+  useTitle(movieDetails ? ` ${movieDetails.title ?? movieDetails.name}` : "");
 
   useEffect(() => {
     async function loadMovieDetails() {
