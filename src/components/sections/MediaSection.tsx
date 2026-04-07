@@ -9,17 +9,17 @@ import {
 import { Card } from "../ui/card";
 
 type MediaSectionProps = {
-  title: string;
-  data: Media[];
+  sectionTitle: string;
+  data: Pick<Media, "id" | "title" | "name" | "poster_path" | "media_type">[];
 };
 
-export function MediaSection({ title, data }: MediaSectionProps) {
+export function MediaSection({ sectionTitle, data }: MediaSectionProps) {
   if (data.length === 0) return null;
 
   return (
     <section className="overflow-hidden py-3">
       <h3 className="mb-3 px-4 text-[24px] font-semibold tracking-wide md:px-6 md:text-[26px] lg:px-8">
-        {title}
+        {sectionTitle}
       </h3>
 
       <Carousel

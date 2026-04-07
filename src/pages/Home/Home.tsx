@@ -39,12 +39,15 @@ export function Home() {
       </Container>
 
       <div className="flex flex-col gap-3">
-        <MediaSection title="Filmes em cartaz" data={nowPlayingMovies} />
+        <MediaSection sectionTitle="Filmes em cartaz" data={nowPlayingMovies} />
         <MediaSection
-          title="Series populares da semana"
+          sectionTitle="Series populares da semana"
           data={weekTrendingSeries}
         />
-        <MediaSection title="Em breve nos cinemas" data={upcomingMovies} />
+        <MediaSection
+          sectionTitle="Em breve nos cinemas"
+          data={upcomingMovies}
+        />
 
         <section>
           <Container className="m-auto flex max-w-150 flex-col gap-2 py-8 text-center">
@@ -57,11 +60,17 @@ export function Home() {
         </section>
 
         <MediaSection
-          title="Filmes populares da semana"
+          sectionTitle="Filmes populares da semana"
           data={trendingMovies}
         />
-        <MediaSection title="Séries mais bem avaliadas" data={topRatedSeries} />
-        <MediaSection title="Filmes mais bem avaliados" data={topRatedMovies} />
+        <MediaSection
+          sectionTitle="Séries mais bem avaliadas"
+          data={topRatedSeries}
+        />
+        <MediaSection
+          sectionTitle="Filmes mais bem avaliados"
+          data={topRatedMovies}
+        />
       </div>
     </div>
   );

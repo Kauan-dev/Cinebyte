@@ -16,9 +16,15 @@ export function TVSeries() {
   return (
     <div className="tvseries-page">
       <div className="flex flex-col gap-3">
-        <MediaSection title="Series populares da semana" data={popularSeries} />
-        <MediaSection title="Series em alta" data={weekTrendingSeries} />
-        <MediaSection title="Séries mais bem avaliadas" data={topRatedSeries} />
+        <MediaSection
+          sectionTitle="Series populares da semana"
+          data={popularSeries}
+        />
+        <MediaSection sectionTitle="Series em alta" data={weekTrendingSeries} />
+        <MediaSection
+          sectionTitle="Séries mais bem avaliadas"
+          data={topRatedSeries}
+        />
       </div>
     </div>
   );

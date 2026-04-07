@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import type { Media } from "@/types/media";
 
-export function Card(media: Media) {
+type CardProps = Pick<
+  Media,
+  "id" | "title" | "name" | "poster_path" | "media_type"
+>;
+
+export function Card(media: CardProps) {
   return (
     <article>
       <Link

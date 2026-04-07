@@ -23,13 +23,19 @@ export function Movies() {
     <div className="movies-page">
       <div className="flex flex-col gap-3">
         <MediaSection
-          title="Filmes populares da semana"
+          sectionTitle="Filmes populares da semana"
           data={trendingMovies}
         />
-        <MediaSection title="Filmes em cartaz" data={nowPlayingMovies} />
-        <MediaSection title="Em breve nos cinemas" data={upcomingMovies} />
-        <MediaSection title="Filmes populares" data={popularMovies} />
-        <MediaSection title="Filmes mais bem avaliados" data={topRatedMovies} />
+        <MediaSection sectionTitle="Filmes em cartaz" data={nowPlayingMovies} />
+        <MediaSection
+          sectionTitle="Em breve nos cinemas"
+          data={upcomingMovies}
+        />
+        <MediaSection sectionTitle="Filmes populares" data={popularMovies} />
+        <MediaSection
+          sectionTitle="Filmes mais bem avaliados"
+          data={topRatedMovies}
+        />
       </div>
     </div>
   );

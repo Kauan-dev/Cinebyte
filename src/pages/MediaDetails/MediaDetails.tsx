@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
-import type { Media } from "@/types/media";
+import type { Media, WatchListItem } from "@/types/media";
 import imdbLogo from "../../assets/images/imdbLogo.png";
 import { Button } from "../../components/ui/button";
 import { Bookmark, BookmarkPlus } from "lucide-react";
@@ -9,34 +9,19 @@ import { toast } from "sonner";
 import { MonitorPlay } from "lucide-react";
 import { useTitle } from "@/hooks/useTitle";
 
-type MediaDetails = Media & {
-  overview: string;
-  release_date?: string;
-  first_air_date?: string | null;
-  backdrop_path?: string | null;
-  vote_average: number | 0;
-};
-
-type WatchListItem = {
-  id: number;
-  title?: string;
-  poster_path?: string | null;
-  media_type: "movie" | "tv";
-};
-
 const WATCHLIST_KEY = "cinebyte:watchList";
 
 export function MediaDetails() {
-  const { media_type, id } = useParams();
-  const [movieDetails, setMovieDetails] = useState<MediaDetails | null>(null);
+  const { media_type: mediaType, id } = useParams();
+  const [mediaDetails, setMediaDetails] = useState<Media | null>(null);
   const [isFavorited, setIsFavorited] = useState(false);
 
-  useTitle(movieDetails ? ` ${movieDetails.title ?? movieDetails.name}` : "");
+  useTitle(mediaDetails ? `${mediaDetails.title ?? mediaDetails.name}` : "");
 
   useEffect(() => {
-    async function loadMovieDetails() {
-      const response = await api.get(`${media_type}/${id}`);
-      setMovieDetails(response.data);
+    async function loadMediaDetails() {
+      const response = await api.get(`${mediaType}/${id}`);
+      setMediaDetails(response.data);
 
       const watchList: WatchListItem[] = JSON.parse(
         localStorage.getItem(WATCHLIST_KEY) ?? "[]",
@@ -48,25 +33,25 @@ export function MediaDetails() {
       setIsFavorited(alreadySaved);
     }
 
-    loadMovieDetails();
-  }, []);
+    loadMediaDetails();
+  }, [mediaType, id]);
 
   function handleWatchTrailer() {
-    if (!movieDetails) return;
+    if (!mediaDetails) return;
 
-    const trailerUrl = `https://www.youtube.com/results?search_query=${movieDetails.title ?? movieDetails.name}+${releaseYear}+oficial+trailer`;
+    const trailerUrl = `https://www.youtube.com/results?search_query=${mediaDetails.title ?? mediaDetails.name}+${releaseYear}+oficial+trailer`;
     window.open(trailerUrl, "_blank", "noopener,noreferrer");
   }
 
   function handleAddToWatchLater() {
-    if (!movieDetails) return;
+    if (!mediaDetails) return;
 
-    let watchList: WatchListItem[] = JSON.parse(
+    const watchList: WatchListItem[] = JSON.parse(
       localStorage.getItem(WATCHLIST_KEY) ?? "[]",
     );
 
     const hasMovie = watchList.some(
-      (savedMovie) => savedMovie.id === movieDetails.id,
+      (savedMovie) => savedMovie.id === mediaDetails.id,
     );
 
     if (hasMovie) {
@@ -75,10 +60,10 @@ export function MediaDetails() {
     }
 
     watchList.unshift({
-      id: movieDetails.id,
-      title: movieDetails.title ?? movieDetails.name,
-      poster_path: movieDetails.poster_path,
-      media_type: media_type as "movie" | "tv",
+      id: mediaDetails.id,
+      title: mediaDetails.title ?? mediaDetails.name,
+      poster_path: mediaDetails.poster_path,
+      media_type: mediaType as "movie" | "tv",
     });
 
     localStorage.setItem(WATCHLIST_KEY, JSON.stringify(watchList));
@@ -95,29 +80,28 @@ export function MediaDetails() {
       `Tem certeza que deseja remover "${mediaToRemoveTitle}" dos favoritos?`,
     );
 
-    if (!hasConfirm) {
-      return;
-    }
+    if (!hasConfirm) return;
 
-    let watchList: WatchListItem[] = JSON.parse(
+    const watchList: WatchListItem[] = JSON.parse(
       localStorage.getItem(WATCHLIST_KEY) ?? "[]",
     );
 
-    let mediaFilter = watchList.filter((media) => {
-      return media.id !== mediaToRemoveID;
-    });
+    const mediaFilter = watchList.filter(
+      (media) => media.id !== mediaToRemoveID,
+    );
 
-    localStorage.setItem("cinebyte:watchList", JSON.stringify(mediaFilter));
+    localStorage.setItem(WATCHLIST_KEY, JSON.stringify(mediaFilter));
+    setIsFavorited(false);
     toast.success("Mídia removida com sucesso!");
   }
 
-  if (!movieDetails) {
+  if (!mediaDetails) {
     return <div>Carregando detalhes...</div>;
   }
 
   const releaseYear = (
-    movieDetails.release_date ??
-    movieDetails.first_air_date ??
+    mediaDetails.release_date ??
+    mediaDetails.first_air_date ??
     ""
   ).split("-")[0];
 
@@ -127,7 +111,7 @@ export function MediaDetails() {
       <div className="md:hidden">
         <img
           className="w-full mask-[linear-gradient(to_bottom,black_65%,transparent)]"
-          src={`https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/original/${mediaDetails.backdrop_path}`}
           alt=""
         />
 
@@ -136,19 +120,23 @@ export function MediaDetails() {
             <div className="flex flex-col gap-8">
               <div>
                 <h1 className="flex items-end gap-2 text-3xl">
-                  {movieDetails.title ?? movieDetails.name}
+                  {mediaDetails.title ?? mediaDetails.name}
                 </h1>
                 <div className="mt-1 flex gap-1 text-[15px] text-neutral-500">
-                  <span>{media_type === "movie" ? "FILME" : "SÉRIE"}</span>
+                  <span>{mediaType === "movie" ? "FILME" : "SÉRIE"}</span>
                   <span>- {releaseYear}</span>
                 </div>
               </div>
 
-              <p className="max-w-137.5">{movieDetails.overview}</p>
+              <p className="max-w-137.5">{mediaDetails.overview}</p>
 
               <div className="flex items-center gap-4 text-lg">
                 <img src={imdbLogo} alt="" className="w-15" />
-                <span>{movieDetails.vote_average.toFixed(1)}</span>
+                <span>
+                  {mediaDetails.vote_average === 0
+                    ? "N/A"
+                    : mediaDetails.vote_average.toFixed(1)}
+                </span>
               </div>
 
               <div className="font-google flex gap-4">
@@ -166,10 +154,9 @@ export function MediaDetails() {
                   onClick={() => {
                     if (isFavorited) {
                       handleRemoveFavorite(
-                        movieDetails.id,
-                        movieDetails.title ?? movieDetails.name ?? "",
+                        mediaDetails.id,
+                        mediaDetails.title ?? mediaDetails.name ?? "",
                       );
-                      setIsFavorited(false);
                     } else {
                       handleAddToWatchLater();
                     }
@@ -193,19 +180,19 @@ export function MediaDetails() {
       <div
         className="hidden bg-cover bg-center bg-no-repeat md:block"
         style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
+          backgroundImage: `url(https://image.tmdb.org/t/p/original/${mediaDetails.backdrop_path})`,
         }}
       >
         <div className="bg-black/85">
           <div className="m-auto flex min-h-[calc(100vh-68px)] items-center justify-between px-4 py-8 md:px-6 lg:h-[calc(100vh-68px)] lg:px-8">
             <div className="flex h-fit w-full items-center justify-between">
               <div className="flex flex-col gap-8">
-                <h2>{media_type === "movie" ? "FILME" : "SÉRIE"}</h2>
+                <h2>{mediaType === "movie" ? "FILME" : "SÉRIE"}</h2>
 
                 <div className="flex items-baseline gap-2.5">
                   <div>
                     <h1 className="flex items-end gap-2 text-3xl">
-                      {movieDetails.title ?? movieDetails.name}
+                      {mediaDetails.title ?? mediaDetails.name}
                     </h1>
 
                     <span className="mb-0.75 text-[15px] text-neutral-500">
@@ -214,11 +201,15 @@ export function MediaDetails() {
                   </div>
                 </div>
 
-                <p className="max-w-137.5">{movieDetails.overview}</p>
+                <p className="max-w-137.5">{mediaDetails.overview}</p>
 
                 <div className="flex items-center gap-4 text-lg">
                   <img src={imdbLogo} alt="" className="w-15" />
-                  <span>{movieDetails.vote_average.toFixed(1)}</span>
+                  <span>
+                    {mediaDetails.vote_average === 0
+                      ? "N/A"
+                      : mediaDetails.vote_average.toFixed(1)}
+                  </span>
                 </div>
 
                 <div className="font-google flex gap-4">
@@ -236,10 +227,9 @@ export function MediaDetails() {
                     onClick={() => {
                       if (isFavorited) {
                         handleRemoveFavorite(
-                          movieDetails.id,
-                          movieDetails.title ?? movieDetails.name ?? "",
+                          mediaDetails.id,
+                          mediaDetails.title ?? mediaDetails.name ?? "",
                         );
-                        setIsFavorited(false);
                       } else {
                         handleAddToWatchLater();
                       }
@@ -259,7 +249,7 @@ export function MediaDetails() {
               <div className="ml-50">
                 <img
                   className="w-74"
-                  src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/original/${mediaDetails.poster_path}`}
                   alt=""
                 />
               </div>
