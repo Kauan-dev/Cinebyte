@@ -8,6 +8,7 @@ import { Bookmark, BookmarkPlus } from "lucide-react";
 import { toast } from "sonner";
 import { MonitorPlay } from "lucide-react";
 import { useTitle } from "@/hooks/useTitle";
+import { Loading } from "@/components/layout/Loading";
 
 const WATCHLIST_KEY = "cinebyte:watchList";
 
@@ -96,7 +97,7 @@ export function MediaDetails() {
   }
 
   if (!mediaDetails) {
-    return <div>Carregando detalhes...</div>;
+    return <Loading />;
   }
 
   const releaseYear = (
