@@ -4,12 +4,10 @@ import featuredBanner from "../../assets/images/featuredBanner.jpg";
 import { Container } from "@/components/layout/Container";
 import { MediaSection } from "../../components/sections/MediaSection";
 import { Loading } from "@/components/layout/Loading";
-import { useEffect } from "react";
+import { useTitle } from "@/hooks/useTitle";
 
 export function Home() {
-  useEffect(() => {
-    document.title = "Cinebyte";
-  }, []);
+  useTitle();
 
   const {
     loading,

@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 
-export function useTitle(title: string) {
+export function useTitle(title?: string) {
   useEffect(() => {
-    document.title = `Cinebyte | ${title}`;
+    if (title) {
+      document.title = `Cinebyte | ${title}`;
+    } else {
+      document.title = "Cinebyte";
+    }
   }, [title]);
 }
