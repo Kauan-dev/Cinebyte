@@ -41,7 +41,7 @@ export function Header() {
           </div>
         </div>
 
-        <div className="ml-5 flex items-center gap-3">
+        <div className="ml-4 flex items-center gap-3">
           <SearchBar />
 
           <Button
