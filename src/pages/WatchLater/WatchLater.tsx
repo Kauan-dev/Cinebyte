@@ -36,7 +36,7 @@ export function WatchLater() {
       return;
     }
 
-    let mediaFilter = favoritesList.filter((media) => {
+    const mediaFilter = favoritesList.filter((media) => {
       return media.id !== mediaToRemoveID;
     });
 

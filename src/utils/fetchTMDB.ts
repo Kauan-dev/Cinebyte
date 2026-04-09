@@ -4,7 +4,7 @@ import type { Media } from "@/types/media";
 const itemsLimit = 16;
 
 export function normalize(
-  items: any[] = [],
+  items: Media[] = [],
   mediaType: "movie" | "tv",
 ): Media[] {
   return items.map((item) => ({

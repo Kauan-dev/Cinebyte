@@ -36,7 +36,7 @@ export function Search() {
     return <Loading />;
   }
 
-  if (data.length == 0) {
+  if (data.length === 0) {
     return (
       <div className="flex h-[calc(100vh-84px-60px)] flex-col items-center justify-center gap-4 text-neutral-500">
         <SearchX size={48} />
