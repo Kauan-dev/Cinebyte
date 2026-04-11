@@ -7,20 +7,39 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card } from "../ui/card";
+import { NavLink } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
+import { Container } from "../layout/Container";
 
 type MediaSectionProps = {
   sectionTitle: string;
+  sectionId: string;
   data: Pick<Media, "id" | "title" | "name" | "poster_path" | "media_type">[];
 };
 
-export function MediaSection({ sectionTitle, data }: MediaSectionProps) {
+export function MediaSection({
+  sectionTitle,
+  sectionId,
+  data,
+}: MediaSectionProps) {
   if (data.length === 0) return null;
 
   return (
     <section className="overflow-hidden py-3">
-      <h3 className="mb-3 px-4 text-[24px] font-semibold tracking-wide md:px-6 md:text-[26px] lg:px-8">
-        {sectionTitle}
-      </h3>
+      <Container className="mb-1 flex items-end justify-between gap-4 md:gap-0">
+        <h3 className="mb-3 text-[18px] font-semibold tracking-wide md:text-[24px]">
+          {sectionTitle}
+        </h3>
+        <NavLink to={`/see-more/${sectionId}`} className="">
+          <div className="mb-3 flex items-end text-[16px] font-medium text-neutral-400 transition-all duration-300 ease-out hover:translate-x-1 hover:text-neutral-100 md:text-[18px]">
+            <span className="whitespace-nowrap">Mostrar mais</span>
+            <ChevronRight
+              size={24}
+              className="transition-all duration-300 ease-out"
+            />
+          </div>
+        </NavLink>
+      </Container>
 
       <Carousel
         className="w-full select-none"
