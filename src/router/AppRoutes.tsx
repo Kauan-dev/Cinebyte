@@ -9,6 +9,7 @@ import { MediaDetails } from "../pages/MediaDetails/MediaDetails";
 import { WatchLater } from "../pages/WatchLater/WatchLater";
 import { About } from "@/pages/About/About";
 import { Search } from "@/pages/Search/Search";
+import { SeeMore } from "@/pages/SeeMore/SeeMore";
 
 import { NotFound } from "../pages/NotFound";
 
@@ -22,6 +23,7 @@ export function AppRoutes() {
         <Route path=":media_type/:id" element={<MediaDetails />} />
         <Route path="/watch-later" element={<WatchLater />} />
         <Route path="/about" element={<About />} />
+        <Route path="/see-more/:sectionId" element={<SeeMore />} />
         <Route path="/search/:query" element={<Search />} />
       </Route>
 
