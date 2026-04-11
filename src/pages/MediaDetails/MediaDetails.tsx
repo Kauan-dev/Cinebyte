@@ -185,7 +185,7 @@ export function MediaDetails() {
         }}
       >
         <div className="bg-black/85">
-          <div className="m-auto flex min-h-[calc(100vh-68px)] items-center justify-between px-4 py-8 md:px-6 lg:h-[calc(100vh-68px)] lg:px-8">
+          <div className="m-auto flex min-h-[calc(100vh-68px)] items-center justify-between px-4 py-8 md:px-6 lg:min-h-[calc(100vh-68px)] lg:px-8">
             <div className="flex h-fit w-full items-center justify-between">
               <div className="flex flex-col gap-8">
                 <h2>{mediaType === "movie" ? "FILME" : "SÉRIE"}</h2>

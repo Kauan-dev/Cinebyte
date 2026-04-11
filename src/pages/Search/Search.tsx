@@ -56,7 +56,7 @@ export function Search() {
               key={item.id}
               id={item.id}
               poster_path={item.poster_path}
-              media_type={item.title ? "movie" : "tv"}
+              media_type={item.media_type}
               title={item.title ?? item.name}
             ></Card>
           );
