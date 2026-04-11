@@ -32,4 +32,14 @@ export const sectionMap: Record<
     mediaType: "movie",
     title: "Filmes mais bem avaliados",
   },
+  "popular-movies": {
+    path: "movie/popular",
+    mediaType: "movie",
+    title: "Filmes em alta",
+  },
+  "popular-series": {
+    path: "tv/popular",
+    mediaType: "tv",
+    title: "Series em alta",
+  },
 };
