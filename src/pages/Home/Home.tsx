@@ -14,7 +14,7 @@ export function Home() {
     nowPlayingMovies,
     weekTrendingSeries,
     upcomingMovies,
-    trendingMovies,
+    weekTrendingMovies,
     topRatedSeries,
     topRatedMovies,
   } = useHomeData();
@@ -37,18 +37,24 @@ export function Home() {
       </Container>
 
       <div className="flex flex-col gap-3">
-        <MediaSection sectionTitle="Filmes em cartaz" data={nowPlayingMovies} />
+        <MediaSection
+          sectionTitle="Filmes em cartaz"
+          sectionId="now-playing-movies"
+          data={nowPlayingMovies}
+        />
         <MediaSection
           sectionTitle="Series populares da semana"
+          sectionId="week-trending-series"
           data={weekTrendingSeries}
         />
         <MediaSection
           sectionTitle="Em breve nos cinemas"
+          sectionId="upcoming-movies"
           data={upcomingMovies}
         />
 
         <section>
-          <Container className="m-auto flex max-w-150 flex-col gap-2 py-8 text-center">
+          <Container className="m-auto flex max-w-150 flex-col gap-2 py-11 text-center">
             <q className="text-xl italic md:text-2xl">
               Por que caímos, Bruce? Para que possamos aprender a nos levantar
               novamente.
@@ -59,14 +65,17 @@ export function Home() {
 
         <MediaSection
           sectionTitle="Filmes populares da semana"
-          data={trendingMovies}
+          sectionId="week-trending-movies"
+          data={weekTrendingMovies}
         />
         <MediaSection
           sectionTitle="Séries mais bem avaliadas"
+          sectionId="top-rated-series"
           data={topRatedSeries}
         />
         <MediaSection
           sectionTitle="Filmes mais bem avaliados"
+          sectionId="top-rated-movies"
           data={topRatedMovies}
         />
       </div>

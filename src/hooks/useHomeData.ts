@@ -8,7 +8,7 @@ export function useHomeData() {
   const [nowPlayingMovies, setNowPlayingMovies] = useState<Media[]>([]);
   const [weekTrendingSeries, setWeekTrendingSeries] = useState<Media[]>([]);
   const [upcomingMovies, setUpcomingMovies] = useState<Media[]>([]);
-  const [trendingMovies, setTrendingMovies] = useState<Media[]>([]);
+  const [weekTrendingMovies, setWeekTrendingMovies] = useState<Media[]>([]);
   const [topRatedSeries, setTopRatedSeries] = useState<Media[]>([]);
   const [topRatedMovies, setTopRatedMovies] = useState<Media[]>([]);
 
@@ -19,7 +19,7 @@ export function useHomeData() {
           nowPlayingMoviesResponse,
           weekTrendingSeriesResponse,
           upcomingMoviesResponse,
-          trendingMoviesResponse,
+          weekTrendingMoviesResponse,
           topRatedSeriesResponse,
           topRatedMoviesResponse,
         ] = await Promise.all([
@@ -34,7 +34,7 @@ export function useHomeData() {
         setNowPlayingMovies(nowPlayingMoviesResponse);
         setWeekTrendingSeries(weekTrendingSeriesResponse);
         setUpcomingMovies(upcomingMoviesResponse);
-        setTrendingMovies(trendingMoviesResponse);
+        setWeekTrendingMovies(weekTrendingMoviesResponse);
         setTopRatedSeries(topRatedSeriesResponse);
         setTopRatedMovies(topRatedMoviesResponse);
       } catch (error) {
@@ -52,7 +52,7 @@ export function useHomeData() {
     nowPlayingMovies,
     weekTrendingSeries,
     upcomingMovies,
-    trendingMovies,
+    weekTrendingMovies,
     topRatedSeries,
     topRatedMovies,
   };
