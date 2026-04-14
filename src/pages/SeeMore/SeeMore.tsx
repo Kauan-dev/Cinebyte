@@ -32,7 +32,7 @@ export function SeeMore() {
 
   return (
     <div className="mt-3">
-      <h3 className="mb-3 px-4 text-[24px] font-semibold tracking-wide md:px-6 md:text-[26px] lg:px-8">
+      <h3 className="mb-3 px-4 text-[24px] font-semibold md:px-6 md:text-[26px] lg:px-8">
         Seção
       </h3>
 
