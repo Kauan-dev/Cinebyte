@@ -27,11 +27,11 @@ export function MediaSection({
   return (
     <section className="overflow-hidden py-3">
       <Container className="mb-1 flex items-end justify-between gap-4 md:gap-0">
-        <h3 className="mb-3 text-[18px] font-semibold tracking-wide md:text-[24px]">
+        <h3 className="mb-3 text-[20px] font-semibold md:text-[24px]">
           {sectionTitle}
         </h3>
         <NavLink to={`/see-more/${sectionId}`} className="">
-          <div className="mb-3 flex items-end text-[16px] font-medium text-neutral-400 transition-all duration-300 ease-out hover:translate-x-1 hover:text-neutral-100 md:text-[18px]">
+          <div className="mb-3.25 flex items-end text-[16px] font-medium text-neutral-400 transition-all duration-300 ease-out hover:translate-x-1 hover:text-neutral-100 md:text-[18px]">
             <span className="whitespace-nowrap">Mostrar mais</span>
             <ChevronRight
               size={24}

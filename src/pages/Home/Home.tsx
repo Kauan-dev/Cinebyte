@@ -54,7 +54,7 @@ export function Home() {
         />
 
         <section>
-          <Container className="m-auto flex max-w-150 flex-col gap-2 py-11 text-center">
+          <Container className="m-auto flex max-w-150 flex-col gap-2 py-14 text-center">
             <q className="text-xl italic md:text-2xl">
               Por que caímos, Bruce? Para que possamos aprender a nos levantar
               novamente.
