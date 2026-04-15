@@ -1,8 +1,6 @@
 import api from "@/services/api";
 import type { Media } from "@/types/media";
 
-const itemsLimit = 16;
-
 export function normalize(
   items: Media[] = [],
   mediaType: "movie" | "tv",
@@ -19,7 +17,11 @@ export function normalize(
   }));
 }
 
-export async function fetchTMDB(path: string, mediaType: "movie" | "tv") {
+export async function fetchTMDB(
+  path: string,
+  mediaType: "movie" | "tv",
+  itemsLimit: number = 16,
+) {
   const response = await api.get(path);
   return normalize(response.data.results.slice(0, itemsLimit), mediaType);
 }

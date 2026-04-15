@@ -21,7 +21,7 @@ export function SeeMore() {
     async function loadData() {
       if (!section) return;
 
-      const results = await fetchTMDB(section.path, section.mediaType);
+      const results = await fetchTMDB(section.path, section.mediaType, 20);
       setData(results);
       setLoading(false);
     }
